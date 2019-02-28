@@ -8,7 +8,14 @@ namespace QuestionSee.DB
 {
     public class DBConnection: DbContext
     {
+
         public DbSet<User> Users { get; set; }
+
+        public DbSet<Question> Questions { get; set; }
+
+        public DbSet<Answer> Answers { get; set; }
+
+
 
         protected override void OnConfiguring(DbContextOptionsBuilder optionsBuilder)
         {

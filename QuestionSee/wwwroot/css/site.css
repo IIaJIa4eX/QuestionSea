@@ -34,4 +34,40 @@ body {
     .carousel-caption {
         display: none;
     }
+
+}
+
+
+.QuestionField {
+    width: 60%;
+    height: 700px;
+    background-color:aquamarine;
+    margin: 0px auto;
+}
+
+.QuestionFieldBar{
+    width:auto;
+    height:50px;
+    background-color:aqua;
+}
+.RegistrationBlock{
+    width: 100%;
+    height: 100%;
+    background-color: black;
+    opacity: 50;
+    z-index: 1;
+}
+
+.RegistrationFields {
+
+    margin: 50% auto;
+
+    background-color: antiquewhite;
+
+    border-radius: 10px;
+
+    width: 30%;
+
+    height: 50%;
+
 }

@@ -7,13 +7,29 @@ namespace QuestionSee.DB
 {
     public class User
     {
-        public int Id { get; set; }
+        public int id { get; set; }
 
-        public string Name { get; set; }
+        public string Nickname { get; set; }
 
-        public int score { get; set; }
+        public string Name { get; set;}
 
-        public bool login = false;
+        public string Password { get; set; } 
+
+        public string SecondName { get; set; }
+
+        public int Rating { get; set; }
+
+        public string Email { get; set; }
+
+        public bool Status { get; set; }
+
+        public bool Admin { get; set; }
+
+        public bool Banned { get; set; }
+
+        public string ProfilePicture { get; set; }
+
+
 
     }
 }

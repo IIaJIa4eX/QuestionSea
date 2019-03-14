@@ -1,0 +1,25 @@
+﻿@model IEnumerable<QuestionSee.DB.Question>
+
+<div class="QuestionField">
+
+
+
+
+
+    <div class="QuestionFieldBar"></div>
+
+    <div class="Questions">
+
+        @foreach (var element in Model)
+        {
+            <div class="QuestionCard">
+                <div class="Question">
+                    <h1>@element.Header</h1>
+                    <p>@element.Description</p>
+                    <a href="#">Перейти</a>
+                </div>
+            </div>
+        }
+    </div>
+
+</div>

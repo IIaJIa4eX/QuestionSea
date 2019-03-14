@@ -1,0 +1,61 @@
+﻿@model QuestionSee.DB.User
+
+@{
+    ViewData["Title"] = "Create";
+    Layout = "~/Views/Shared/_Layout.cshtml";
+}
+
+<h2>Create</h2>
+
+<h4>User</h4>
+<hr />
+<div class="RegistrationBlock">
+    
+    <div class="RegistrationFields">
+        <span class="close"></span>
+        <form asp-action="Create">
+            <div asp-validation-summary="ModelOnly" class="text-danger"></div>
+
+            <div class="form-group">
+                <label asp-for="Nickname" class="control-label"></label>
+                <input asp-for="Nickname" class="form-control" />
+                <span asp-validation-for="Nickname" class="text-danger"></span>
+            </div>
+            <div class="form-group">
+                <label asp-for="Name" class="control-label"></label>
+                <input asp-for="Name" class="form-control" />
+                <span asp-validation-for="Name" class="text-danger"></span>
+            </div>
+            <div class="form-group">
+                <label asp-for="Password" class="control-label"></label>
+                <input asp-for="Password" class="form-control" />
+                <span asp-validation-for="Password" class="text-danger"></span>
+            </div>
+            <div class="form-group">
+                <label asp-for="SecondName" class="control-label"></label>
+                <input asp-for="SecondName" class="form-control" />
+                <span asp-validation-for="SecondName" class="text-danger"></span>
+            </div>
+
+            <div class="form-group">
+                <label asp-for="Email" class="control-label"></label>
+                <input asp-for="Email" class="form-control" />
+                <span asp-validation-for="Email" class="text-danger"></span>
+            </div>
+
+            <div class="form-group">
+                <label asp-for="ProfilePicture" class="control-label"></label>
+                <input asp-for="ProfilePicture" type="file" class="form-control" />
+                <span asp-validation-for="ProfilePicture" class="text-danger"></span>
+            </div>
+            <div class="form-group">
+                <input type="submit" value="Create" class="btn btn-default" />
+            </div>
+        </form>
+    </div>
+</div>
+
+<div>
+    <a asp-action="Index">Back to List</a>
+</div>
+

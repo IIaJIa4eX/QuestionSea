@@ -1,4 +1,29 @@
-﻿// Please see documentation at https://docs.microsoft.com/aspnet/core/client-side/bundling-and-minification
-// for details on configuring this project to bundle and minify static web assets.
+﻿
 
-// Write your JavaScript code.
+var questionarray = $(".Questions .QuestionCard");
+
+var left_last = 0;
+for (var i = 0; i < questionarray.length; i++) {
+    var el = jQuery(questionarray[i]);
+
+    el.css({ position: "absolute", top: 0, left: left_last });
+    left_last += el.width();
+}
+
+setInterval(function () {
+    var l = jQuery(questionarray[questionarray.length - 1]);
+
+    l.css("left", 0 - l.width());
+
+    var arr = Array();
+    arr.push(l[0]);
+
+    for (var i = 0; i < questionarray.length - 1; i++) {
+        arr.push(questionarray[i]);
+    }
+
+    questionarray = jQuery(arr);
+
+    questionarray.animate({ left: "+=" + l.width() });
+
+}, 1000);

@@ -4,11 +4,18 @@ using System.Linq;
 using System.Threading.Tasks;
 using Microsoft.AspNetCore.Http;
 using Microsoft.AspNetCore.Mvc;
+using QuestionSee.DB;
 
 namespace QuestionSee.Controllers
 {
     public class RegistrationController : Controller
     {
+        DBConnection db;
+        public RegistrationController(DBConnection db)
+        {
+            this.db = db;
+        }
+
         // GET: Registration
         public ActionResult Index()
         {
@@ -24,24 +31,38 @@ namespace QuestionSee.Controllers
         // GET: Registration/Create
         public ActionResult Create()
         {
-            return View();
+            return View(new User());
         }
 
         // POST: Registration/Create
         [HttpPost]
-        [ValidateAntiForgeryToken]
         public ActionResult Create(IFormCollection collection)
         {
             try
             {
+                User u = new User();
+                //u.Name = Request.Form["Name"]; старый метод
+                u.Name = collection["Name"];
+                u.Nickname = collection["Nickname"];
+                u.Password = collection["Password"];
+                u.SecondName = collection["SecondName"];
+                u.ProfilePicture = collection["ProfilePicture"];
+                u.Email = collection["Email"];
+
+                db.Users.Add(u);
+                db.SaveChanges();
+
+                return Redirect("/");
                 // TODO: Add insert logic here
 
-                return RedirectToAction(nameof(Index));
+                //return RedirectToAction(nameof(Index));
             }
             catch
             {
-                return View();
+                
             }
+
+            return View();
         }
 
         // GET: Registration/Edit/5
@@ -52,7 +73,6 @@ namespace QuestionSee.Controllers
 
         // POST: Registration/Edit/5
         [HttpPost]
-        [ValidateAntiForgeryToken]
         public ActionResult Edit(int id, IFormCollection collection)
         {
             try
@@ -75,7 +95,6 @@ namespace QuestionSee.Controllers
 
         // POST: Registration/Delete/5
         [HttpPost]
-        [ValidateAntiForgeryToken]
         public ActionResult Delete(int id, IFormCollection collection)
         {
             try

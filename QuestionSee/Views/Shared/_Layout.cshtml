@@ -31,23 +31,21 @@
             <div class="navbar-collapse collapse">
                 <ul class="nav navbar-nav">
                     <li><a href="/Home/Index">MainPage</a></li>
-                    <li><a asp-area="" asp-controller="Home" asp-action="About">About</a></li>
-                    <li><a asp-area="" asp-controller="Home" asp-action="Contact">Contact</a></li>
-                    <li><a href="/Home/Registration">Registration</a></li>
+                    <li><a href="/Registration/Create">Registration</a></li>
                 </ul>
             </div>
         </div>
     </nav>
 
-    <div class="QuestionField">
-        @RenderBody()
-        <div class="QuestionFieldBar"></div>
-    </div>
+    @RenderBody()
+    @await Component.InvokeAsync("Slider")
+
+    
 
     <partial name="_CookieConsentPartial" />
 
     <div class="container body-content">
-        
+
         <hr />
         <footer>
             <p> Made by iiajia4ex</p>
@@ -76,5 +74,60 @@
     </environment>
 
     @RenderSection("Scripts", required: false)
+
+    <div id="RegistrationBlock" class="RegistrationBlock" >
+
+        <div class="RegistrationFields">
+            <span class="close" onclick="document.getElementById('RegistrationBlock').style.display = 'none'; Clear();"></span>
+            <form id="regform" action="/Registration/Create" method="post">
+
+                <div id="Nickname" class="form-group">
+                    <label class="control-label"> Nickname</label>
+                    <input name="Nickname" class="form-control" />
+                </div>
+                <div id="name" class="form-group">
+                    <label class="control-label">Name</label>
+                    <input name="Name" class="form-control" />
+                </div>
+                <div id="password" class="form-group">
+                    <label class="control-label"> Password</label>
+                    <input name="Password" class="form-control" />
+                </div>
+                <div id="secondname" class="form-group">
+                    <label class="control-label">Secondname</label>
+                    <input name="SecondName" class="form-control" />
+                </div>
+                <div id="email" class="form-group">
+                    <label class="control-label">Email</label>
+                    <input name="Email" class="form-control" />
+                </div>
+                <div id="picture" class="form-group">
+                    <label a class="control-label">ProfilePicture</label>
+                    <input name="ProfilePicture" type="file" class="form-control" />                  
+                </div>
+                <div class="form-group">
+                    <input type="submit" value="Create" class="btn btn-default" />
+                </div>
+            </form>
+        </div>
+    </div>
+    <script>
+
+        function Clear() {
+            jQuery('#regform input').not('input[type="submit"]').val("");
+        }
+
+        if (document.getElementById('RegistrationBlock').style.display = 'none') {
+            var f = 0;
+            var int = setInterval(function () {
+                f++;
+                if (f == 300) {
+                    document.getElementById('RegistrationBlock').style.display = 'block';
+                    f = 0;
+                }
+            }, 1000)
+        }; 
+    </script>
+
 </body>
 </html>

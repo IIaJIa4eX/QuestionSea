@@ -1,0 +1,31 @@
+﻿@model IEnumerable<QuestionSee.DB.Answer>
+
+
+
+
+<div class="AnswersFlow">
+    
+    @foreach (var element in Model)
+    {
+    <div class="AnswerBlock">
+        <hr style="border-color:black;"/>
+        <h2>@element.AnswerText</h2>
+        <p>@element.Rating</p>
+        <p>@element.Like</p>
+        <p>@element.Dislike</p>
+        <p>
+            @if (element.BestAnswer)
+            {
+                <span>Ура</span>
+            }
+            else
+            {
+                <span>НЕ Ура</span>
+            }
+        </p>
+        <p>@element.Date</p>
+        <p>@element.Deleted</p>
+    </div>
+    }
+
+</div>

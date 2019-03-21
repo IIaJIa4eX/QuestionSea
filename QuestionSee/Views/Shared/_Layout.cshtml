@@ -33,14 +33,17 @@
                     <li><a href="/Home/Index">MainPage</a></li>
                     <li><a href="/Registration/Create">Registration</a></li>
                 </ul>
-            </div>
+                <ul class="nav navbar-nav" style="float:right;">
+                    <li><a href="#">sdfgdasgfdasgf</a></li>
+                </ul>
+        </div>
         </div>
     </nav>
 
     @RenderBody()
-    @await Component.InvokeAsync("Slider")
 
-    
+
+   
 
     <partial name="_CookieConsentPartial" />
 
@@ -75,7 +78,7 @@
 
     @RenderSection("Scripts", required: false)
 
-    <div id="RegistrationBlock" class="RegistrationBlock" >
+    <div id="RegistrationBlock" class="BlackBackgroudBlock">
 
         <div class="RegistrationFields">
             <span class="close" onclick="document.getElementById('RegistrationBlock').style.display = 'none'; Clear();"></span>
@@ -103,7 +106,7 @@
                 </div>
                 <div id="picture" class="form-group">
                     <label a class="control-label">ProfilePicture</label>
-                    <input name="ProfilePicture" type="file" class="form-control" />                  
+                    <input name="ProfilePicture" type="file" class="form-control" />
                 </div>
                 <div class="form-group">
                     <input type="submit" value="Create" class="btn btn-default" />
@@ -126,7 +129,7 @@
                     f = 0;
                 }
             }, 1000)
-        }; 
+        };
     </script>
 
 </body>

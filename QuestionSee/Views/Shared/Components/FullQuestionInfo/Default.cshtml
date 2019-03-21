@@ -1,0 +1,31 @@
+﻿@model QuestionSee.DB.Question
+
+
+<div class="BlackBackgroudBlock">
+    <div class="FullquestionCard">
+        <h2>@Model.Header</h2>
+        <p>@Model.Description</p>
+        <p>@Model.Tag</p>
+        <p>@Model.Rating</p>
+        <p>
+            @if (Model.Answered)
+            {
+                <span>Ура</span>
+            }
+            else
+            {
+                <span>НЕ Ура</span>
+            }
+        </p>
+        <p>@Model.Like</p>
+        <p>@Model.Dislike</p>
+        <p>@Model.Date</p>
+        <p>@Model.Deleted</p>
+        <div></div>
+        @await Component.InvokeAsync("AnswerComments")
+    </div>
+    
+    
+
+</div>    
+

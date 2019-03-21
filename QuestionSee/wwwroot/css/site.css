@@ -53,7 +53,7 @@ body {
     height: 50px;
     background-color:aqua;
 }
-.RegistrationBlock {
+.BlackBackgroudBlock {
     position: fixed;
     top: 0;
     left: 0;
@@ -61,7 +61,6 @@ body {
     bottom: 0;
     background-color: rgba(0,0,0,0.7);
     z-index: 500;
-
 }
 
 .RegistrationFields {
@@ -88,11 +87,66 @@ body {
     height: 600px;
     float:left;
 }
+
+.FullquestionCard {
+    margin: 0 auto 0;
+    background-color: antiquewhite;
+    border-radius: 10px;
+    width: 30%;
+    position: absolute;
+    padding: 30px;
+    left: 20%;
+    right: 20%;
+    bottom: 120px;
+    top: 120px;
+    overflow: scroll;
+}
+
+.AnswersFlow{
+    width: 100%;
+    height:auto;
+
+}
+
+.AnswerBlock{
+    width: 100%;
+    height: auto;
+}
+
 .Question {
     background-color: coral;
     height: 100%;
     margin: 0 5px 0 5px;
 }
+.Forward {
+    top: 325px;
+    left: 1272px;
+    width: 128px;
+    height: 128px;
+    background-image: url('../images/sliderforward.png');
+    z-index: 20;
+    position: absolute;
+    opacity: 0.5;  
+}
+.Forward:hover {
+    opacity: 1;
+
+    }
+
+.Back {
+    top: 325px;
+    left: 0px;
+    width: 128px;
+    height: 128px;
+    background-image: url('../images/sliderback.png');
+    z-index: 20;
+    position: absolute;
+    opacity: 0.5
+}
+
+.Back:hover {
+        opacity: 1;
+    }
 
 .close {
     position:absolute;

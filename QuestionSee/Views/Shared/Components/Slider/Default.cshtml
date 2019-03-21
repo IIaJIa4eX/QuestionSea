@@ -1,5 +1,4 @@
 ﻿@model IEnumerable<QuestionSee.DB.Question>
-
 <div class="QuestionField">
 
 
@@ -9,6 +8,8 @@
     <div class="QuestionFieldBar"></div>
 
     <div class="Questions">
+        <div class="Forward" onclick="SliderForward()"></div>
+        <div class="Back" onclick="SliderBack()"></div>
 
         @foreach (var element in Model)
         {
@@ -16,10 +17,19 @@
                 <div class="Question">
                     <h1>@element.Header</h1>
                     <p>@element.Description</p>
-                    <a href="#">Перейти</a>
+                    <form method="post">
+                        <input type="hidden" name="FullQuestionInfo" value="@element.Id" />
+                        <input type="hidden" name="AnswersComments" value="@element.Id" />
+                        <input type="submit" value="Id" /> Посмотреть<Br>
+                    </form>
                 </div>
             </div>
         }
+
+
+
+
+
     </div>
 
 </div>

@@ -4,7 +4,6 @@
     <meta charset="utf-8" />
     <meta name="viewport" content="width=device-width, initial-scale=1.0" />
     <title>@ViewData["Title"] - QuestionSee</title>
-
     <environment include="Development">
         <link rel="stylesheet" href="~/lib/bootstrap/dist/css/bootstrap.css" />
         <link rel="stylesheet" href="~/css/site.css" />
@@ -15,46 +14,6 @@
               asp-fallback-test-class="sr-only" asp-fallback-test-property="position" asp-fallback-test-value="absolute" />
         <link rel="stylesheet" href="~/css/site.min.css" asp-append-version="true" />
     </environment>
-</head>
-<body>
-    <nav class="navbar navbar-inverse navbar-fixed-top">
-        <div class="container">
-            <div class="navbar-header">
-                <button type="button" class="navbar-toggle" data-toggle="collapse" data-target=".navbar-collapse">
-                    <span class="sr-only">Toggle navigation</span>
-                    <span class="icon-bar"></span>
-                    <span class="icon-bar"></span>
-                    <span class="icon-bar"></span>
-                </button>
-                <a asp-area="" asp-controller="Home" asp-action="Index" class="navbar-brand">QuestionSee</a>
-            </div>
-            <div class="navbar-collapse collapse">
-                <ul class="nav navbar-nav">
-                    <li><a href="/Home/Index">MainPage</a></li>
-                    <li><a href="/Registration/Create">Registration</a></li>
-                </ul>
-                <ul class="nav navbar-nav" style="float:right;">
-                    <li><a href="#">sdfgdasgfdasgf</a></li>
-                </ul>
-        </div>
-        </div>
-    </nav>
-
-    @RenderBody()
-
-
-   
-
-    <partial name="_CookieConsentPartial" />
-
-    <div class="container body-content">
-
-        <hr />
-        <footer>
-            <p> Made by iiajia4ex</p>
-        </footer>
-    </div>
-
     <environment include="Development">
         <script src="~/lib/jquery/dist/jquery.js"></script>
         <script src="~/lib/bootstrap/dist/js/bootstrap.js"></script>
@@ -75,6 +34,49 @@
         </script>
         <script src="~/js/site.min.js" asp-append-version="true"></script>
     </environment>
+</head>
+<body>
+    <nav class="navbar navbar-inverse navbar-fixed-top">
+        <div class="container">
+            <div class="navbar-header">
+                <button type="button" class="navbar-toggle" data-toggle="collapse" data-target=".navbar-collapse">
+                    <span class="sr-only">Toggle navigation</span>
+                    <span class="icon-bar"></span>
+                    <span class="icon-bar"></span>
+                    <span class="icon-bar"></span>
+                </button>
+                <a asp-area="" asp-controller="Home" asp-action="Index" class="navbar-brand">QuestionSee</a>
+            </div>
+            <div class="navbar-collapse collapse">
+                <ul class="nav navbar-nav">
+                    <li><a href="/Home/Index">MainPage</a></li>
+                    <li><a href="/Registration/Create">Registration</a></li>
+                </ul>
+                <ul class="nav navbar-nav" style="float:right;">
+                    <li>
+                        @await Component.InvokeAsync("UserWindow")
+                    </li>
+                </ul>
+            </div>
+        </div>
+    </nav>
+
+    @RenderBody()
+
+
+
+
+    <partial name="_CookieConsentPartial" />
+
+    <div class="container body-content">
+
+        <hr />
+        <footer>
+            <p> Made by iiajia4ex</p>
+        </footer>
+    </div>
+
+
 
     @RenderSection("Scripts", required: false)
 

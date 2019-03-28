@@ -1,0 +1,11 @@
+﻿@{ 
+    Layout = null;
+}
+<h2>@Model</h2>
+
+@if (Model == "")
+{
+    <script>
+        $("#postform").submit();
+    </script>
+}

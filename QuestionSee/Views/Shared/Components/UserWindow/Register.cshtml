@@ -1,0 +1,80 @@
+﻿
+
+
+<a href="#" data-toggle="modal" data-target="#popupregister">Войти</a>
+
+
+
+<div class="modal fade" id="popupregister" tabindex="-1" role="dialog" aria-labelledby="exampleModalLabel" aria-hidden="true">
+    <div class="modal-dialog" role="document">
+        <div class="modal-content">
+            <div class="modal-header">
+                <h5 class="modal-title" id="exampleModalLabel">Авторизация</h5>
+                <button type="button" class="close" data-dismiss="modal" aria-label="Close">
+                    <span aria-hidden="true">&times;</span>
+                </button>
+            </div>
+            <div class="modal-body">
+
+                <div class="error">
+                    <small>@ViewBag.Error</small>
+                </div>
+
+                <div class="LogInDropDown">
+                    <div style="text-align:center;" class="error">
+                        <small>@ViewBag.Error</small>
+                    </div>
+                    <form method="post" action="/Account/CheckInfo" id="postform">
+                        <div id="errorholder"></div>
+                        <div class="form-group">
+                            <label for="exampleInputEmail1">Email address</label>
+                            <input type="email" class="form-control" name="EmailCheckLogIn" aria-describedby="emailHelp" placeholder="Введите email">
+                            <small hidden id="EmailInput" class="form-text text-muted">Введите правильный email: abc@xyz.com.</small>
+                        </div>
+                        <div class="form-group">
+                            <label for="exampleInputPassword1">Password</label>
+                            <input type="password" class="form-control" name="PasswordCheckLogIn" placeholder="Пароль">
+                            <small hidden id="PasswordInput" class="form-text text-muted">Убедитесь в том, что  не использован Caps Lock</small>
+                        </div>
+                        <div style="text-align:center;">
+                            <button type="button" class="btn btn-primary" onclick="submitit();">Войти</button>
+                        </div>
+                        <div style="text-align:center;">
+                            <p>У вас нет аккаунта? Тогда <a href="Account/Registration">Зарегистрируйтесь</a> </p>
+                        </div>
+                    </form>
+                </div>
+
+                <script>
+
+                    //function submitit() {
+                    //    $.post("/Account/Test", $("#postform").serialize(), function (data) {
+                    //        alert(data.error);
+                    //        if (data.error == "УРА") $("#postform").submit();
+                    //    });
+                    //}
+
+                    function submitit() {
+                        $.post("/Account/Test1", $("#postform").serialize(), function (data) {
+                            $("#errorholder").html(data);
+                        });
+                    }
+
+
+                    $("input").click(function () {
+                        $(this).parent().children("small").slideDown();
+                    }).blur(function () {
+                        $(this).parent().children("small").slideUp();
+                    })
+
+                </script>
+
+            </div>
+            @*<div class="modal-footer">
+                <button type="button" class="btn btn-secondary" data-dismiss="modal">Close</button>
+                <button type="button" class="btn btn-primary">Save changes</button>
+            </div>*@
+        </div>
+    </div>
+</div>
+

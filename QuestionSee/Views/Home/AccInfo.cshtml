@@ -3,15 +3,5 @@
     ViewData["Title"] = "AccInfo";
     Layout = "~/Views/Shared/_Layout.cshtml";
 }
-
 <h2>AccInfo</h2>
-
-<div class="UserInfoBlock">
-
-
-
-
-
-
-</div>
-
+@await Component.InvokeAsync("UserWindow")

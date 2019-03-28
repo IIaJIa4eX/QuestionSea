@@ -4,6 +4,7 @@ using System.Diagnostics;
 using System.Linq;
 using System.Text;
 using System.Threading.Tasks;
+using Microsoft.AspNetCore.Http;
 using Microsoft.AspNetCore.Mvc;
 using QuestionSee.Models;
 
@@ -13,10 +14,6 @@ namespace QuestionSee.Controllers
     {
         public IActionResult Index()
         {
-            HttpContext.Session.Set("test", Encoding.Default.GetBytes("SDfsdf"));
-
-            
-
             return View();
         }
 

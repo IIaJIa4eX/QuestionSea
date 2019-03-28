@@ -1,8 +1,5 @@
 ﻿
 
-var questionarray = $(".Questions .QuestionCard");
-
-var left_last = 0;
 /*
 for (var i = 0; i < questionarray.length; i++) {
     var el = jQuery(questionarray[i]);
@@ -27,15 +24,26 @@ for (var i = 0; i < questionarray.length; i++) {
 
     questionarray.animate({ left: "+=" + l.width() });
 */
-var questionarray = $(".Questions .QuestionCard");
 
-var left_last = 0;
-for (var i = 0; i < questionarray.length; i++) {
-    var el = jQuery(questionarray[i]);
+var questionarray = null;
 
-    el.css({ position: "absolute", top: 0, left: left_last });
-    left_last += el.width();
-}
+$(document).ready(function () {
+
+
+    questionarray = $(".Questions .QuestionCard");
+
+    var left_last = 0;
+    for (var i = 0; i < questionarray.length; i++) {
+        var el = jQuery(questionarray[i]);
+
+        el.css({ position: "absolute", top: 0, left: left_last });
+        left_last += el.width();
+    }
+
+    
+
+})
+
 
 function SliderBack() {
     questionarray.animate({ left: "-=" + $(questionarray[0]).width() });
@@ -44,7 +52,7 @@ function SliderBack() {
     var l = jQuery(questionarray[0]);
 
     var arr = Array();
-    
+
 
     for (var i = 1; i < questionarray.length; i++) {
         arr.push(questionarray[i]);
@@ -55,7 +63,7 @@ function SliderBack() {
 }
 
 function SliderForward() {
-    
+
 
 
     var l = jQuery(questionarray[questionarray.length - 1]);

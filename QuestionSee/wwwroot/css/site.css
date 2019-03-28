@@ -72,8 +72,14 @@ body {
     padding: 30px;
 }
 
-.Questions {
+.LogInDropDown{
+    width: 250px;
+    height: 160px;
+    
+}
 
+
+.Questions {
     top: 51px;
     left: 0;
     right: 0;
@@ -118,6 +124,7 @@ body {
     height: 100%;
     margin: 0 5px 0 5px;
 }
+
 .Forward {
     top: 325px;
     left: 1272px;
@@ -177,3 +184,9 @@ body {
     .close:after {
         transform: rotate(-45deg);
     }
+
+
+
+.modal-backdrop.fade.in {
+    z-index: -1;
+}

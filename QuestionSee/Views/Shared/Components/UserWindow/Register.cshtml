@@ -6,24 +6,16 @@
 
 
 <div class="modal fade" id="popupregister" tabindex="-1" role="dialog" aria-labelledby="exampleModalLabel" aria-hidden="true">
-    <div class="modal-dialog" role="document">
+    <div class="modal-dialog" role="document" style="width:300px;">
         <div class="modal-content">
             <div class="modal-header">
                 <h5 class="modal-title" id="exampleModalLabel">Авторизация</h5>
                 <button type="button" class="close" data-dismiss="modal" aria-label="Close">
-                    <span aria-hidden="true">&times;</span>
+                    <span aria-hidden="true">&nbsp;</span>
                 </button>
             </div>
             <div class="modal-body">
-
-                <div class="error">
-                    <small>@ViewBag.Error</small>
-                </div>
-
                 <div class="LogInDropDown">
-                    <div style="text-align:center;" class="error">
-                        <small>@ViewBag.Error</small>
-                    </div>
                     <form method="post" action="/Account/CheckInfo" id="postform">
                         <div id="errorholder"></div>
                         <div class="form-group">
@@ -40,7 +32,7 @@
                             <button type="button" class="btn btn-primary" onclick="submitit();">Войти</button>
                         </div>
                         <div style="text-align:center;">
-                            <p>У вас нет аккаунта? Тогда <a href="Account/Registration">Зарегистрируйтесь</a> </p>
+                            <p>У вас нет аккаунта? Тогда <a href="/Home/RegistrationPage">Зарегистрируйтесь</a> </p>
                         </div>
                     </form>
                 </div>
@@ -55,7 +47,7 @@
                     //}
 
                     function submitit() {
-                        $.post("/Account/Test1", $("#postform").serialize(), function (data) {
+                        $.post("/Account/CheckInfo", $("#postform").serialize(), function (data) {
                             $("#errorholder").html(data);
                         });
                     }

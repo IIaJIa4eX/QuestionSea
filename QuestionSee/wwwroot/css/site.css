@@ -73,9 +73,7 @@ body {
 }
 
 .LogInDropDown{
-    width: 250px;
-    height: 160px;
-    
+
 }
 
 
@@ -188,5 +186,5 @@ body {
 
 
 .modal-backdrop.fade.in {
-    z-index: -1;
+   z-index: -1;
 }

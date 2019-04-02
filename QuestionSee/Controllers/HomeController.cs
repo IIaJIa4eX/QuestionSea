@@ -25,7 +25,7 @@ namespace QuestionSee.Controllers
 
 
 
-        public IActionResult Registration()
+        public IActionResult RegistrationPage()
         {
 
             return View();

@@ -12,10 +12,28 @@ namespace QuestionSee.Controllers
     {
 
         DBConnection db;
+        Session ses;
 
-        public AccountController(DBConnection db)
+        public AccountController(DBConnection db, Session ses)
         {
             this.db = db;
+            this.ses = ses;
+        }
+
+        public ActionResult T()
+        {
+            string sid = HttpContext.Session.Id;
+            if (ses.users.ContainsKey(sid)) ;
+                //Пользователь есть
+            else;
+            //Пользователя нет
+            ses.users[sid] = new SessionElement() { UserId = 44 };
+            HttpContext.Session.Set("asdf", new byte[] { });
+
+            var current = ses.users[sid];
+            current.UserId = 123;
+
+            return View();
         }
 
 
@@ -37,31 +55,8 @@ namespace QuestionSee.Controllers
             return View();
         }
 
-        public ActionResult Test()
-        {
-            if (Request.Method != "POST")
-            {
-                return Json(new { error = "НЕ ПОСТ" });
-            }
 
-            string email = Request.Form["EmailCheckLogIn"];
-            string password = Request.Form["PasswordCheckLogIn"];
-            var em = db.Users.Where(f => f.Email == email).FirstOrDefault();
-
-            if (em == null)
-            {
-                return Json(new { error = "НЕ  ЮЗВЕРЬ" });
-            }
-
-            if (em.Password != password)
-            {
-                return Json(new { error = "НЕ  ПаРоЛь" });
-            }
-
-            return Json(new { error = "УРА" });
-        }
-
-        public ActionResult Test1()
+        public ActionResult CheckInfo()
         {
             if (Request.Method != "POST")
             {
@@ -82,50 +77,57 @@ namespace QuestionSee.Controllers
                 return View("Test1", "Пароль неверен");
             }
 
+            string sid = HttpContext.Session.Id;
+            ses.users[sid] = new SessionElement() { UserNickname = em.Nickname };
+            HttpContext.Session.Set("TestSession", new byte[] { });
+
             return View("Test1", "");
-        }
-
-        public ActionResult CheckInfo()
-        {
-            if (Request.Method != "POST")
-            {
-                return View("empty");
-            }
-
-            string email = Request.Form["EmailCheckLogIn"];
-            string password = Request.Form["PasswordCheckLogIn"];
-            var em = db.Users.Where(f => f.Email == email).FirstOrDefault();
-
-            if (em == null)
-            {
-                ViewBag.Error = "sdfsdfdsf";
-                return View("Registration");// Ошибка 
-            }
-
-            if (em.Password != password)
-            {
-                ViewBag.Error = "sdfsdfdsf";
-                return View("Registration"); ; //о
-            }
-
-            return RedirectToAction("/Home/Index", em);
 
         }
         // POST: Account/Create
         [HttpPost]
-        [ValidateAntiForgeryToken]
         public ActionResult Create(IFormCollection collection)
         {
-            try
-            {
-                // TODO: Add insert logic here
+                User u = new User();
+                //u.Name = Request.Form["Name"]; старый метод
+                u.Name = collection["Name"];
+                u.Nickname = collection["Nickname"];
+                u.Password = collection["Password"]; 
+                u.SecondName = collection["SecondName"];
+                u.ProfilePicture = collection["ProfilePicture"];
+                u.Email = collection["Email"];
 
-                return RedirectToAction(nameof(Index));
-            }
-            catch
-            {
-                return View();
-            }
+                string vrfpass = collection["PasswordCnf"];
+
+                if(vrfpass != u.Password)
+                {
+                    return View("RegistrationError", "Введённые пароли не совпадают");
+                }
+
+                if (u.Nickname == "" || u.Nickname == null)
+                {
+                    return View("RegistrationError", "Вы не ввели никнейм");
+                }
+                
+                var emlcheck = db.Users.Where(f => f.Email == u.Email).FirstOrDefault();
+
+                if (emlcheck != null)
+                {
+                    return View("RegistrationError", "Пользователь с таким Email адресом уже существует");
+                }
+                var Nicknamecheck = db.Users.Where(f => f.Nickname == u.Nickname).FirstOrDefault();
+
+                if (Nicknamecheck != null)
+                {
+                    return View("RegistrationError", "Пользователь с таким Nickname'ом уже существует");
+                }
+
+
+
+                db.Users.Add(u);
+                db.SaveChanges();
+
+                return View("RegistrationError", "");
         }
 
         // GET: Account/Edit/5

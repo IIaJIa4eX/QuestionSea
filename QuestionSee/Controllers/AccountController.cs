@@ -28,7 +28,6 @@ namespace QuestionSee.Controllers
             else;
             //Пользователя нет
             ses.users[sid] = new SessionElement() { UserId = 44 };
-            HttpContext.Session.Set("asdf", new byte[] { });
 
             var current = ses.users[sid];
             current.UserId = 123;
@@ -55,6 +54,13 @@ namespace QuestionSee.Controllers
             return View();
         }
 
+        public ActionResult LogOff()
+        {
+
+            HttpContext.Session.Id;
+            return Redirect("/");
+        }
+
 
         public ActionResult CheckInfo()
         {
@@ -77,13 +83,14 @@ namespace QuestionSee.Controllers
                 return View("Test1", "Пароль неверен");
             }
 
+            HttpContext.Session.Set("test", new byte[] { 0 });
             string sid = HttpContext.Session.Id;
-            ses.users[sid] = new SessionElement() { UserNickname = em.Nickname };
-            HttpContext.Session.Set("TestSession", new byte[] { });
+            ses.users[sid] = new SessionElement() { UserNickname = em.Nickname, UserId = em.id };
 
             return View("Test1", "");
 
         }
+
         // POST: Account/Create
         [HttpPost]
         public ActionResult Create(IFormCollection collection)

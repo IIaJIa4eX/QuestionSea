@@ -11,14 +11,23 @@ namespace QuestionSee.Components
     public class UserWindowViewComponent: ViewComponent
     {
         DBConnection db;
-        public UserWindowViewComponent(DBConnection db)
+        Session ses;
+        public UserWindowViewComponent(DBConnection db, Session ses)
         {
             this.db = db;
+            this.ses = ses;
         }
 
         public async Task<IViewComponentResult> InvokeAsync()
         {
-            int? userID = HttpContext.Session.GetInt32("UserID");
+            var SessionID = HttpContext.Session.Id;
+            int? userID = null;
+            if (ses.users.ContainsKey(SessionID))
+            {
+                var element = ses.users[SessionID];
+                userID = element.UserId;
+            }
+
             if (userID == null)
             {
                 return View("Register");

@@ -32,8 +32,9 @@ namespace QuestionSee
             });
 
 
-            services.AddMvc().SetCompatibilityVersion(CompatibilityVersion.Version_2_1);
             services.AddSession();
+            services.AddMvc().SetCompatibilityVersion(CompatibilityVersion.Version_2_1);
+            
             services.AddSingleton<DBConnection>();
             services.AddSingleton<Session>();
         }

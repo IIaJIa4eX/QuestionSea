@@ -3,5 +3,58 @@
     ViewData["Title"] = "AccInfo";
     Layout = "~/Views/Shared/_Layout.cshtml";
 }
-<h2>AccInfo</h2>
+<body>
 
+    <div class="MainAccView">
+        <div class="LittleInfo">
+            <div class="ProfilePic"></div>
+        </div>
+            <div class="AccInfo">
+                <form id="Registrationform" action="/Account/Create" method="post">
+                    <div id="errorview"></div>
+                    <div class="form-row">
+                        <div class="form-group col-md-6">
+                            <label for="exampleName">Имя</label>
+                            <input name="Name" type="text" class="form-control" placeholder="Имя">
+                        </div>
+
+                        <div class="form-group col-md-6">
+                            <label for="exampleSecondName">Фамилия</label>
+                            <input name="SecondName" type="text" class="form-control" placeholder="Фамилия">
+                        </div>
+                    </div>
+                    <div class="form-row">
+                        <div class="form-group col-md-6">
+                            <label for="exampleNickName">Никнейм</label>
+                            <input name="Nickname" type="text" class="form-control" placeholder="Никнейм">
+                        </div>
+                        <div class="form-group col-md-6">
+                            <label for="exampleEmail">Email адрес</label>
+                            <input name="Email" type="email" class="form-control" id="exampleInputEmail1" aria-describedby="emailHelp" placeholder="Enter email">
+                            <small id="emailHelp" class="form-text text-muted">We'll never share your email with anyone else.</small>
+                        </div>
+                    </div>
+                    <div class="form-row">
+                        <div class="form-group col-md-6">
+                            <label for="examplePassword">Пароль</label>
+                            <input name="Password" type="password" class="form-control" id="exampleInputPassword1" placeholder="Password">
+                        </div>
+                        <div class="form-group col-md-6">
+                            <label for="examplePasswordCnf">Подтвердите свой пароль</label>
+                            <input name="PasswordCnf" type="password" class="form-control" id="exampleInputPassword1" placeholder="PasswordCnf">
+                        </div>
+                    </div>
+                    <div id="picture" class="form-group">
+                        <label a class="control-label">ProfilePicture</label>
+                        <input name="ProfilePicture" type="file" class="form-control" />
+                    </div>
+                    <div style="text-align:center;">
+                        <button type="button" class="btn btn-primary" onclick="errorcheck();">Редактировать</button>
+                    </div>
+                </form>
+            </div>
+            <div style="clear:both;"></div>
+            <div class="StatAccView"></div>
+
+     </div>   
+</body>

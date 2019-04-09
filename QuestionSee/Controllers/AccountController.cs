@@ -57,7 +57,7 @@ namespace QuestionSee.Controllers
         public ActionResult LogOff()
         {
 
-            HttpContext.Session.Id;
+            ses.users.Remove(HttpContext.Session.Id);
             return Redirect("/");
         }
 

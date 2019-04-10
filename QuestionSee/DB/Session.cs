@@ -10,7 +10,9 @@ namespace QuestionSee.DB
     {
         public int UserId { get; set; }
         public string UserNickname { get; set; }
-        
+        public User current { get; set; }
+        public Dictionary<string, object> tmpData { get; } = new Dictionary<string, object>();
+
     }
 
     public class Session

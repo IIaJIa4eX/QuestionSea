@@ -85,7 +85,7 @@ namespace QuestionSee.Controllers
 
             HttpContext.Session.Set("test", new byte[] { 0 });
             string sid = HttpContext.Session.Id;
-            ses.users[sid] = new SessionElement() { UserNickname = em.Nickname, UserId = em.id };
+            ses.users[sid] = new SessionElement() { UserNickname = em.Nickname, UserId = em.id, current = em };
 
             return View("Test1", "");
 
@@ -144,8 +144,7 @@ namespace QuestionSee.Controllers
         }
 
         // POST: Account/Edit/5
-        [HttpPost]
-        [ValidateAntiForgeryToken]
+        [HttpPost]       
         public ActionResult Edit(int id, IFormCollection collection)
         {
             try

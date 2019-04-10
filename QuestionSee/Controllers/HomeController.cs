@@ -7,11 +7,24 @@ using System.Threading.Tasks;
 using Microsoft.AspNetCore.Http;
 using Microsoft.AspNetCore.Mvc;
 using QuestionSee.Models;
+using QuestionSee.DB;
 
 namespace QuestionSee.Controllers
 {
     public class HomeController : Controller
     {
+        Session ses;
+        User CurrentUser;
+
+        public HomeController(Session ses)
+        {
+            this.ses = ses;
+            if (ses.users.Keys.Contains(HttpContext.Session.Id))
+            {
+                CurrentUser = ses.users[HttpContext.Session.Id].current;
+            }
+        }
+
         public IActionResult Index()
         {
             return View();
@@ -19,6 +32,13 @@ namespace QuestionSee.Controllers
 
         public IActionResult AccInfo()
         {
+            if (CurrentUser != null)
+            {
+
+                return View("AccInfo", CurrentUser);
+
+            }
+
             return View();
         }
 

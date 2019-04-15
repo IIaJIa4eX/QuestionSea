@@ -2,6 +2,7 @@
 using System.Collections.Generic;
 using System.Linq;
 using System.Threading.Tasks;
+using Microsoft.AspNetCore.Hosting;
 using Microsoft.AspNetCore.Http;
 using Microsoft.AspNetCore.Mvc;
 using QuestionSee.DB;
@@ -14,10 +15,13 @@ namespace QuestionSee.Controllers
         DBConnection db;
         Session ses;
 
-        public AccountController(DBConnection db, Session ses)
+        private IHostingEnvironment _hostingEnvironment;
+
+        public AccountController(DBConnection db, Session ses, IHostingEnvironment environment)
         {
             this.db = db;
             this.ses = ses;
+            _hostingEnvironment = environment;
         }
 
         public ActionResult T()
@@ -145,18 +149,65 @@ namespace QuestionSee.Controllers
 
         // POST: Account/Edit/5
         [HttpPost]       
-        public ActionResult Edit(int id, IFormCollection collection)
+        public ActionResult Edit(IFormCollection collection)
         {
-            try
-            {
-                // TODO: Add update logic here
+            int id = int.Parse(collection["Id"]);
 
-                return RedirectToAction(nameof(Index));
-            }
-            catch
+            User u = db.Users.Where(f => f.id == id).FirstOrDefault();
+
+            if (u == null)
+                return View("EditError", "Пользователь не существует");
+
+            u.Name = collection["Name"];
+            u.Nickname = collection["Nickname"];
+            u.Password = collection["Password"];
+            u.SecondName = collection["SecondName"];
+            u.Email = collection["Email"];
+
+            if (Request.Form.Files.Count > 0)
             {
-                return View();
+                var file = Request.Form.Files.First();
+                var uploads = System.IO.Path.Combine(_hostingEnvironment.WebRootPath, "uploads");
+                var filePath = System.IO.Path.Combine(uploads, file.FileName);
+
+                System.IO.File.OpenWrite("");
+                using (var fileStream = new System.IO.FileStream(filePath, System.IO.FileMode.Create))
+                {
+                    file.CopyToAsync(fileStream);
+                }
+
+                u.ProfilePicture = "/uploads/" + file.FileName;
             }
+
+            string vrfpass = collection["PasswordCnf"];
+
+            if (vrfpass != u.Password)
+            {
+                return View("EditError", "Введённые пароли не совпадают");
+            }
+
+            if (u.Nickname == "" || u.Nickname == null)
+            {
+                return View("EditError", "Вы не ввели никнейм");
+            }
+
+            var emlcheck = db.Users.Where(f => f.Email == u.Email && f.id != u.id).FirstOrDefault();
+
+            if (emlcheck != null)
+            {
+                return View("EditError", "Пользователь с таким Email адресом уже существует");
+            }
+            var Nicknamecheck = db.Users.Where(f => f.Nickname == u.Nickname && f.id != u.id).FirstOrDefault();
+
+            if (Nicknamecheck != null)
+            {
+                return View("EditError", "Пользователь с таким Nickname'ом уже существует");
+            }
+
+            db.SaveChanges();
+
+            return View("EditError", "");
+
         }
 
         // GET: Account/Delete/5

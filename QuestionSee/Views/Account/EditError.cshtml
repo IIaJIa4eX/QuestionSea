@@ -1,0 +1,13 @@
+﻿@{
+
+    Layout = null;
+}
+
+<small>@Model</small>
+
+@if (Model == "")
+{
+    <script>
+        window.location.href = "/";
+    </script>
+}

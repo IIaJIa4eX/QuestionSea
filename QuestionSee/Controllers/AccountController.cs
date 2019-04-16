@@ -157,12 +157,16 @@ namespace QuestionSee.Controllers
 
             if (u == null)
                 return View("EditError", "Пользователь не существует");
-
-            u.Name = collection["Name"];
-            u.Nickname = collection["Nickname"];
-            u.Password = collection["Password"];
-            u.SecondName = collection["SecondName"];
-            u.Email = collection["Email"];
+            if (!string.IsNullOrWhiteSpace(collection["Name"]))
+                u.Name = collection["Name"];
+            if (!string.IsNullOrWhiteSpace(collection["Nickname"]))
+                u.Nickname = collection["Nickname"];
+            if (!string.IsNullOrWhiteSpace(collection["Password"]))
+                u.Password = collection["Password"];
+            if (!string.IsNullOrWhiteSpace(collection["SecondName"]))
+                u.SecondName = collection["SecondName"];
+            if (!string.IsNullOrWhiteSpace(collection["Email"]))
+                u.Email = collection["Email"];
 
             if (Request.Form.Files.Count > 0)
             {
@@ -181,10 +185,11 @@ namespace QuestionSee.Controllers
 
             string vrfpass = collection["PasswordCnf"];
 
-            if (vrfpass != u.Password)
-            {
-                return View("EditError", "Введённые пароли не совпадают");
-            }
+            if (!string.IsNullOrWhiteSpace(collection["PasswordCnf"]))
+                if (vrfpass != u.Password)
+                {
+                    return View("EditError", "Введённые пароли не совпадают");
+                }
 
             if (u.Nickname == "" || u.Nickname == null)
             {

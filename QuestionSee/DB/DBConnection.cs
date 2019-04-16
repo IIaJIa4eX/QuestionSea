@@ -19,8 +19,8 @@ namespace QuestionSee.DB
 
         protected override void OnConfiguring(DbContextOptionsBuilder optionsBuilder)
         {
-            //optionsBuilder.UseMySql("Server=vtest.fvds.ru;Database=questionsee;Uid=newuser;Pwd=qwertypassword;CharSet=utf8;");
-            optionsBuilder.UseMySql("Server=localhost;Database=questionsee;Uid=root;Pwd=;CharSet=utf8;");
+            optionsBuilder.UseMySql("Server=vtest.fvds.ru;Database=questionsee;Uid=newuser;Pwd=qwertypassword;CharSet=utf8;");
+            //optionsBuilder.UseMySql("Server=localhost;Database=questionsee;Uid=root;Pwd=;CharSet=utf8;");
         }
     }
 }

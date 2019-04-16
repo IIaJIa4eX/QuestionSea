@@ -170,7 +170,7 @@ namespace QuestionSee.Controllers
                 var uploads = System.IO.Path.Combine(_hostingEnvironment.WebRootPath, "uploads");
                 var filePath = System.IO.Path.Combine(uploads, file.FileName);
 
-                System.IO.File.OpenWrite("");
+                //System.IO.File.OpenWrite(filePath);
                 using (var fileStream = new System.IO.FileStream(filePath, System.IO.FileMode.Create))
                 {
                     file.CopyToAsync(fileStream);

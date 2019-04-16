@@ -8,6 +8,18 @@
     <div class="MainAccView">
         <div class="LittleInfo">
             <div class="ProfilePic"> <img src="@Model.ProfilePicture" /></div>
+            <form action="/Account/Edit" method="post" enctype="multipart/form-data">
+                <div id="picture" class="form-group">
+                    <input name="ProfilePicture" type="file" class="form-control" />
+                </div>
+                <div style="text-align:center;">
+                    <button type="submit" class="btn btn-primary">Сохранить</button>
+                </div>
+                <div hidden>
+                    <input name="Id" value="@Model.id">
+                </div>
+            </form>
+            
             <label></label>
         </div>
         <div class="AccInfo">
@@ -46,15 +58,12 @@
                 </div>
                 <div hidden>
                     <input name="Id"  value="@Model.id">
-                </div>
-                <div id="picture" class="form-group">
-                    <label a class="control-label">ProfilePicture</label>
-                    <input name="ProfilePicture" type="file" class="form-control" />
-                </div>
+                </div>                              
                 <div style="text-align:center;">
                     <button type="button" class="btn btn-primary" onclick="errorcheck();">Редактировать</button>
                 </div>
             </form>
+            
         </div>
         <div style="clear:both;"></div>
         <div class="StatAccView"></div>

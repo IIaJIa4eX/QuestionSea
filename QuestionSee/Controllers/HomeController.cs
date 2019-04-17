@@ -14,12 +14,14 @@ namespace QuestionSee.Controllers
 {
     public class HomeController : Controller
     {
+        DBConnection db;
         Session ses;
         User CurrentUser;
 
-        public HomeController(Session ses)
+        public HomeController(Session ses, DBConnection db)
         {
-            this.ses = ses;            
+            this.ses = ses;
+            this.db = db;
         }
 
         public override void OnActionExecuting(ActionExecutingContext context)
@@ -34,6 +36,24 @@ namespace QuestionSee.Controllers
         public IActionResult Index()
         {
             return View();
+        }
+
+        public IActionResult AllQuestions()
+        {
+            var arr = db.Questions.ToArray();
+
+            return View(arr);
+
+        }
+
+
+        [HttpPost]
+        public IActionResult SearchByTags(IFormCollection collection)
+        {
+            var arr = db.Questions.Where();
+
+            return View(arr);
+
         }
 
         public IActionResult AccInfo()

@@ -1,0 +1,30 @@
+﻿@model IEnumerable<QuestionSee.DB.Question>
+@{
+    ViewData["Title"] = "AllQuestions";
+    Layout = "~/Views/Shared/_Layout.cshtml";
+}
+
+
+<body>
+    <div class="AllQuestions">
+        <div class="QuestionSearch">
+        </div>
+        @foreach (var element in Model)
+        {
+            <div class="QuestionCard">
+                <div class="Question">
+                    <h1>@element.Header</h1>
+                    <p>@element.Description</p>
+                    <form method="post">
+                        <input type="hidden" name="FullQuestionInfo" value="@element.Id" />
+                        <input type="hidden" name="AnswersComments" value="@element.Id" />
+                        <input type="submit" value="Id" /> Посмотреть<Br>
+                    </form>
+                </div>
+            </div>
+        }
+
+    </div>
+
+</body>
+

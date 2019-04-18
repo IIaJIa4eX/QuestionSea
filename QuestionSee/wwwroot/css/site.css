@@ -170,6 +170,13 @@ body {
 
     }
 
+.QuestionSearch {
+    width: 700px; 
+    height: 80px;
+    border: 1px solid;
+    margin: 0 auto;
+}
+
 .Back {
     top: 325px;
     left: 0px;

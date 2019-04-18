@@ -8,6 +8,11 @@
 <body>
     <div class="AllQuestions">
         <div class="QuestionSearch">
+            <form method="post" action="/Account/Edit">
+            <input type="text" name="SearchByHeader"/> Поиск по названию
+            <input type="text" name="SearchByTags"/> Поиск по тегам 
+            <input type="submit" value="Найти"/> 
+            </form>
         </div>
         @foreach (var element in Model)
         {

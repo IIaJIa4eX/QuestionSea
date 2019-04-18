@@ -50,9 +50,9 @@ namespace QuestionSee.Controllers
         [HttpPost]
         public IActionResult SearchByTags(IFormCollection collection)
         {
-            var arr = db.Questions.Where();
+           // var arr = db.Questions.Where();
 
-            return View(arr);
+            return View();
 
         }
 

@@ -20,10 +20,35 @@ namespace QuestionSee.Components
 
         public async Task<IViewComponentResult> InvokeAsync()
         {
+            //if (!Request.Form.ContainsKey("SearchByHeader") || !Request.Form.ContainsKey("SearchByTags"))
+            //{
+            //    return View("empty");
+            //}
 
-            var arr = db.Questions.ToArray();
+            string head = null; 
+            string tags = null; 
 
-            return View(arr);
+            if (Request.Method == "POST")
+            {
+                head = Request.Form["SearchByHeader"];
+                tags = Request.Form["SearchByTags"];
+            }
+
+            var arr = db.Questions.AsQueryable();
+
+            if (!string.IsNullOrWhiteSpace(head))
+            {
+                arr = arr.Where(f => f.Header.Contains(head));
+            }
+
+            if (!string.IsNullOrWhiteSpace(tags))
+            {
+                var qtags = tags.Split(',');
+                arr = arr.Where(f => qtags.Contains(f.Tag));
+            }
+
+            return View(arr.ToArray());
         }
     }
 }
+

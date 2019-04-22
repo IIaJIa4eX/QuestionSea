@@ -8,26 +8,14 @@
 <body>
     <div class="AllQuestions">
         <div class="QuestionSearch">
-            <form method="post" action="/Account/Edit">
-            <input type="text" name="SearchByHeader"/> Поиск по названию
-            <input type="text" name="SearchByTags"/> Поиск по тегам 
-            <input type="submit" value="Найти"/> 
+            <form method="post">
+                <input type="text" name="SearchByHeader" /> Поиск по названию
+                <input type="text" name="SearchByTags" /> Поиск по тегам
+                <input type="submit" value="Найти" />
             </form>
         </div>
-        @foreach (var element in Model)
-        {
-            <div class="QuestionCard">
-                <div class="Question">
-                    <h1>@element.Header</h1>
-                    <p>@element.Description</p>
-                    <form method="post">
-                        <input type="hidden" name="FullQuestionInfo" value="@element.Id" />
-                        <input type="hidden" name="AnswersComments" value="@element.Id" />
-                        <input type="submit" value="Id" /> Посмотреть<Br>
-                    </form>
-                </div>
-            </div>
-        }
+
+        @await Component.InvokeAsync("QuestionsFlow")
 
     </div>
 

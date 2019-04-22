@@ -40,21 +40,16 @@ namespace QuestionSee.Controllers
 
         public IActionResult AllQuestions()
         {
-            var arr = db.Questions.ToArray();
-
-            return View(arr);
-
-        }
-
-
-        [HttpPost]
-        public IActionResult SearchByTags(IFormCollection collection)
-        {
-           // var arr = db.Questions.Where();
-
+            
             return View();
 
         }
+        public IActionResult AskQuestion()
+        {
+            return View();
+        }
+
+
 
         public IActionResult AccInfo()
         {

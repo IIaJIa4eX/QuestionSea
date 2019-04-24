@@ -98,9 +98,21 @@ body {
     padding: 30px;
     left: 20%;
     right: 20%;
-    bottom: 120px;
+    bottom: 287px;
     top: 120px;
     overflow: scroll;
+}
+
+.AnswerComment {
+    margin: 0 auto 0;
+    background-color: antiquewhite;
+    border-radius: 10px;
+    width: 30%;
+    position: absolute;
+    padding: 30px;
+    left: 20%;
+    right: 20%;
+    bottom: 120px;
 }
 
 .AnswersFlow{
@@ -153,6 +165,17 @@ body {
     width: 820px;
 }
 
+.QuestionFlow{
+    width: 1100px;
+    margin: 81px auto;
+    position:relative;
+}
+
+.AllQuestions {
+    margin: 0 auto;
+    width: 1400px;
+
+}
 
 
 .Forward {
@@ -227,3 +250,5 @@ body {
 .modal-backdrop.fade.in {
    z-index: -1;
 }
+
+

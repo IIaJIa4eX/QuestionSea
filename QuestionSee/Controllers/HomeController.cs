@@ -46,7 +46,19 @@ namespace QuestionSee.Controllers
         }
         public IActionResult AskQuestion()
         {
-            return View();
+            if (CurrentUser != null)
+            {
+
+                return View("AskQuestion", CurrentUser);
+
+            }
+
+            return RedirectToAction("RegistrationPage");
+        }
+
+        public IActionResult GiveAnswer()
+        {
+            return
         }
 
 

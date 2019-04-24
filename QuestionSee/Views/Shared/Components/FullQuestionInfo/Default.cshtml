@@ -23,10 +23,18 @@
         <p>@Model.Date</p>
         <p>@Model.Deleted</p>
         <div></div>
+
         @await Component.InvokeAsync("AnswerComments")
     </div>
-    
-    
+    <div class="AnswerComment">
+        <form method="post">
+
+        <textarea name="content" id="editor"></textarea>
+        <input type="submit" value="Ответить">
+
+        </form>
+    </div>
+
 
 </div>    
 

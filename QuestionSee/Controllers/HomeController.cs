@@ -56,9 +56,35 @@ namespace QuestionSee.Controllers
             return RedirectToAction("RegistrationPage");
         }
 
-        public IActionResult GiveAnswer()
+        public IActionResult SentQuestion(IFormCollection collection)
+
         {
-            return
+            return View();
+        }
+
+        public IActionResult GiveAnswer(IFormCollection collection)
+        {
+            int cur;
+            if(CurrentUser != null)
+            {
+                cur = CurrentUser.id;
+
+                Answer ans = new Answer();
+
+                ans.AnswerText = collection["content"];
+                ans.UserId = cur;
+                int id = int.Parse(collection["QuestionId"]);
+                ans.QuestionId = id;
+
+                db.Answers.Add(ans);
+                db.SaveChanges();
+
+            }
+
+            
+
+
+            return View();
         }
 
 

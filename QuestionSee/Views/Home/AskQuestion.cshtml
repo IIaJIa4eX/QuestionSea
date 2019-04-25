@@ -1,14 +1,28 @@
-﻿@{
+﻿
+
+@{
     ViewData["Title"] = "AskQuestion";
     Layout = "~/Views/Shared/_Layout.cshtml";
 }
 
 
 
+<h1>Задайте свой вопрос здесь</h1>
+
 <div class="AskQuestion">
+    
+    
+    <div style="margin:0 auto; width:600px">
+        <form method="post" action="/Home/AskQuestion">
 
-    <div style="margin: 80px auto; width: 500px;">
+        <h3>Введи заголовок вопроса</h3>
+        <input type="text" name="QuestionHeader">
+        <h3>Опишите свою пробелму</h3>
         <textarea name="content" id="editor"></textarea>
-    </div>
+        <h3>Введите теги</h3>
+        <input type="text" name="QuestionTags">
+        <input type="submit" value="Задать">
 
+        </form>
+    </div>
 </div>

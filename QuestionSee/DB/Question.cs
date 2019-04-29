@@ -7,27 +7,27 @@ namespace QuestionSee.DB
 {
     public class Question
     {
-        public int Id { get; set; } = 3;
+        public int Id { get; set; }
 
-        public int UserId { get; set; } = 1;
+        public int UserId { get; set; }
 
-        public string Header { get; set; } = "Test";
+        public string Header { get; set; }
 
-        public string Description { get; set; } = "TesTestTestTestTestTestTestTestt";
+        public string Description { get; set; } 
 
-        public string Tag { get; set; } = "Test";
+        public string Tag { get; set; }
 
-        public bool Answered { get; set; } = true;
+        public bool Answered { get; set; }
 
-        public int Rating { get; set; } = 135;
+        public int Rating { get; set; }
 
-        public int Like { get; set; } = 5;
+        public int Like { get; set; }
 
-        public bool Deleted { get; set; } = false;
+        public bool Deleted { get; set; }
 
-        public int Dislike { get; set; } = 3;
+        public int Dislike { get; set; }
 
-        public DateTime Date { get; set; }
+        public DateTime Date { get; set; } = DateTime.Now;
 
 
     }

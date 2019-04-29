@@ -59,6 +59,23 @@ namespace QuestionSee.Controllers
         public IActionResult SentQuestion(IFormCollection collection)
 
         {
+            Question qs = new Question();
+
+            int cur;
+
+            if (CurrentUser != null)
+            {
+                cur = CurrentUser.id;
+                qs.Header = collection["QuestionHeader"];
+                qs.Description = collection["content"];
+                qs.Tag = collection["QuestionTags"];
+
+                qs.UserId = cur;
+
+                db.Questions.Add(qs);
+                db.SaveChanges();
+            }
+
             return View();
         }
 

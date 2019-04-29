@@ -16,7 +16,7 @@
             <div class="QuestionCard">
                 <div class="Question">
                     <h1>@element.Header</h1>
-                    <p>@element.Description</p>
+                    <div>@Html.Raw(element.Description)</div>
                     <form method="post" action="/">
                         <input type="hidden" name="FullQuestionInfo" value="@element.Id" />
                         <input type="hidden" name="AnswersComments" value="@element.Id" />

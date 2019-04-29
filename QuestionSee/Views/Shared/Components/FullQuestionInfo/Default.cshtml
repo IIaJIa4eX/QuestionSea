@@ -2,10 +2,12 @@
 @model QuestionSee.DB.Question
 
 
-<div class="BlackBackgroudBlock">
+<div class="BlackBackgroudBlock" id="FullQuestionInfo">
+    
     <div class="FullquestionCard">
+        <span class="close" onclick="document.getElementById('FullQuestionInfo').style.display = 'none'; Clear();"></span>
         <h2>@Model.Header</h2>
-        <p>@Model.Description</p>
+        <div>@Html.Raw(Model.Description)</div>
         <p>@Model.Tag</p>
         <p>@Model.Rating</p>
         <p>
@@ -29,12 +31,16 @@
     <div class="AnswerComment">
         <form method="post" action="/Home/GiveAnswer">
 
-        <textarea name="content" id="editor"></textarea>
-         <input hidden name="QuestionId" type="text" value="@Model.Id">
-        <input type="submit" value="Ответить">
+            <textarea name="content" id="editor"></textarea>
+            <input hidden name="QuestionId" type="text" value="@Model.Id">
+            <input type="submit" value="Ответить">
         </form>
     </div>
 
 
 </div>    
-
+<script>
+    function Clear() {
+        jQuery('#regform input').not('input[type="submit"]').val("");
+    }
+    </script>

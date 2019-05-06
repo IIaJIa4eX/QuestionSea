@@ -15,7 +15,7 @@ namespace QuestionSee.DB
 
         public string AnswerText { get; set; }
 
-        public bool BestAnswer { get; set; } = false;
+        public bool BestAnswer { get; set; }
 
         public int Rating { get; set; }
 
@@ -23,9 +23,9 @@ namespace QuestionSee.DB
 
         public int Dislike { get; set; }
 
-        public bool Deleted { get; set; } = false;
+        public bool Deleted { get; set; }
 
-        public DateTime Date { get; set; }
+        public DateTime Date { get; set; } = DateTime.Now;
 
         public string Picture { get; set; }
 

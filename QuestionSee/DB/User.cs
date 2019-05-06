@@ -17,15 +17,15 @@ namespace QuestionSee.DB
 
         public string SecondName { get; set; }
 
-        public int Rating { get; set; } = 0;
+        public int Rating { get; set; }
 
-        public string Email { get; set; } = "NONAME@fff.ff";
+        public string Email { get; set; }
 
-        public bool Status { get; set; } = false;
+        public bool Status { get; set; }
 
-        public bool Admin { get; set; } = false;
+        public bool Admin { get; set; }
 
-        public bool Banned { get; set; } = false;
+        public bool Banned { get; set; }
 
         public string ProfilePicture { get; set; } 
 

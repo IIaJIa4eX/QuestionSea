@@ -3,31 +3,36 @@
 
 
 <div class="BlackBackgroudBlock" id="FullQuestionInfo">
-    
-    <div class="FullquestionCard">
-        <span class="close" onclick="document.getElementById('FullQuestionInfo').style.display = 'none'; Clear();"></span>
-        <h2>@Model.Header</h2>
-        <div>@Html.Raw(Model.Description)</div>
-        <p>@Model.Tag</p>
-        <p>@Model.Rating</p>
-        <p>
-            @if (Model.Answered)
-            {
-                <span>Ура</span>
-            }
-            else
-            {
-                <span>НЕ Ура</span>
-            }
-        </p>
-        <p>@Model.Like</p>
-        <p>@Model.Dislike</p>
-        <p>@Model.Date</p>
-        <p>@Model.Deleted</p>
-        <div></div>
 
-        @await Component.InvokeAsync("AnswerComments")
-    </div>
+    <div class="Central">
+        <div class="CloseCard">
+            <span class="close" onclick="document.getElementById('FullQuestionInfo').style.display = 'none'; Clear();"></span>
+        </div>
+        <div class="FullquestionCard">
+            <h2>@Model.Header</h2>
+            <div>@Html.Raw(Model.Description)</div>
+            <p>@Model.Tag</p>
+            <p>@Model.Rating</p>
+            <p>
+                @if (Model.Answered)
+                {
+                    <span>Ура</span>
+                }
+                else
+                {
+                    <span>НЕ Ура</span>
+                }
+            </p>
+            <p>@Model.Like</p>
+            <p>@Model.Dislike</p>
+            <p>@Model.Date</p>
+            <p>@Model.Deleted</p>
+
+            <div></div>
+
+            @await Component.InvokeAsync("AnswerComments")
+        </div>
+      </div>
     <div class="AnswerComment">
         <form method="post" action="/Home/GiveAnswer">
 
@@ -35,6 +40,7 @@
             <input hidden name="QuestionId" type="text" value="@Model.Id">
             <input type="submit" value="Ответить">
         </form>
+
     </div>
 
 

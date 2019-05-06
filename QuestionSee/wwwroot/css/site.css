@@ -83,24 +83,17 @@ body {
     background-color: black;
     overflow: hidden;
 }
-.QuestionCard{
+.QuestionCard {
     width: 350px;
     height: 600px;
-    float:left;
+    float: left;
+    margin-top: 10px;
 }
 
+
 .FullquestionCard {
-    margin: 0 auto 0;
-    background-color: antiquewhite;
-    border-radius: 10px;
-    width: 30%;
-    position: absolute;
-    padding: 30px;
-    left: 20%;
-    right: 20%;
-    bottom: 287px;
-    top: 120px;
     overflow: scroll;
+    height:489px;
 }
 
 .AnswerComment {
@@ -113,6 +106,24 @@ body {
     left: 20%;
     right: 20%;
     bottom: 120px;
+}
+
+.CloseCard {
+    position: absolute;
+    right: -1px;
+    top: -1px;
+}
+.Central {
+    margin: 0 auto 0;
+    background-color: antiquewhite;
+    border-radius: 10px;
+    width: 30%;
+    position: absolute;
+    padding: 30px;
+    left: 20%;
+    right: 20%;
+    bottom: 287px;
+    top: 120px;
 }
 
 .AnswersFlow{
@@ -197,7 +208,7 @@ body {
     width: 700px; 
     height: 80px;
     border: 1px solid;
-    margin: 0 auto;
+    margin: 28px auto;
 }
 
 .Back {

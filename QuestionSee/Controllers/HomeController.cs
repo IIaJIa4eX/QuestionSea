@@ -74,9 +74,12 @@ namespace QuestionSee.Controllers
 
                 db.Questions.Add(qs);
                 db.SaveChanges();
+
+                return RedirectToAction("AskQuestion");
             }
 
-            return View();
+            return RedirectToAction("RegistrationPage");
+
         }
 
         public IActionResult GiveAnswer(IFormCollection collection)
@@ -96,12 +99,11 @@ namespace QuestionSee.Controllers
                 db.Answers.Add(ans);
                 db.SaveChanges();
 
+                return RedirectToAction("Index");
+
             }
 
-            
-
-
-            return View();
+            return RedirectToAction("RegistrationPage");
         }
 
 

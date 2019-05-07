@@ -1,6 +1,7 @@
-﻿
-@model QuestionSee.DB.Question
-
+﻿@{ 
+    QuestionSee.DB.Question question = Model.question;
+    QuestionSee.DB.User user = Model.user;
+}
 
 <div class="BlackBackgroudBlock" id="FullQuestionInfo">
 
@@ -9,12 +10,12 @@
             <span class="close" onclick="document.getElementById('FullQuestionInfo').style.display = 'none'; Clear();"></span>
         </div>
         <div class="FullquestionCard">
-            <h2>@Model.Header</h2>
-            <div>@Html.Raw(Model.Description)</div>
-            <p>@Model.Tag</p>
-            <p>@Model.Rating</p>
+            <h2>@question.Header</h2>
+            <div>@Html.Raw(question.Description)</div>
+            <p>@question.Tag</p>
+            <p>@question.Rating</p>
             <p>
-                @if (Model.Answered)
+                @if (question.Answered)
                 {
                     <span>Ура</span>
                 }
@@ -23,30 +24,30 @@
                     <span>НЕ Ура</span>
                 }
             </p>
-            <p>@Model.Like</p>
-            <p>@Model.Dislike</p>
-            <p>@Model.Date</p>
-            <p>@Model.Deleted</p>
+            <p>@question.Like</p>
+            <p>@question.Dislike</p>
+            <p>@question.Date</p>
+            <p>@question.Deleted</p>
 
             <div></div>
 
             @await Component.InvokeAsync("AnswerComments")
         </div>
-      </div>
+    </div>
     <div class="AnswerComment">
         <form method="post" action="/Home/GiveAnswer">
 
             <textarea name="content" id="editor"></textarea>
-            <input hidden name="QuestionId" type="text" value="@Model.Id">
+            <input hidden name="QuestionId" type="text" value="@question.Id">
             <input type="submit" value="Ответить">
         </form>
 
     </div>
 
 
-</div>    
+</div>
 <script>
     function Clear() {
         jQuery('#regform input').not('input[type="submit"]').val("");
     }
-    </script>
+</script>

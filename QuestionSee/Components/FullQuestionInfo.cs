@@ -13,10 +13,12 @@ namespace QuestionSee.Components
     {
         DBConnection db;
         User CurrentUser;
+        Session ses;
 
-        public FullQuestionInfoViewComponent(DBConnection db)
+        public FullQuestionInfoViewComponent(DBConnection db, Session ses)
         {
             this.db = db;
+            this.ses = ses;
         }
 
         public async Task<IViewComponentResult> InvokeAsync()
@@ -32,6 +34,7 @@ namespace QuestionSee.Components
             }
 
             User u = new User();
+            CurrentUser = ses.users[HttpContext.Session.Id].current;
             u = CurrentUser;
             
             string id = Request.Form["FullQuestionInfo"];

@@ -1,31 +1,39 @@
-﻿@model IEnumerable<QuestionSee.DB.Answer>
-
-
+﻿@{
+    QuestionSee.DB.Answer answer = Model.answer;
+    QuestionSee.DB.User user = Model.user;
+}
 
 
 <div class="AnswersFlow">
-    
-    @foreach (var element in Model)
-    {
-    <div class="AnswerBlock">
-        <hr style="border-color:black;"/>
-        <div>@Html.Raw(element.AnswerText)</div>
-        <p>@element.Rating</p>
-        <p>@element.Like</p>
-        <p>@element.Dislike</p>
-        <p>
-            @if (element.BestAnswer)
-            {
-                <span>Ура</span>
-            }
-            else
-            {
-                <span>НЕ Ура</span>
-            }
-        </p>
-        <p>@element.Date</p>
-        <p>@element.Deleted</p>
-    </div>
-    }
 
+    @foreach (var element in Model.answer)
+    {
+        <div class="AnswerBlock">
+            <hr style="border-color:black;" />
+            <div>@Html.Raw(element.AnswerText)</div>
+            <p>@element.Rating</p>
+            <p>@element.Like</p>
+            <p>@element.Dislike</p>
+            <p>
+                @if (element.BestAnswer)
+                {
+                    <span>Ура</span>
+                }
+                else
+                {
+                    <span>НЕ Ура</span>
+                }
+            </p>
+            <p>@element.Date</p>
+            <p>@element.Deleted</p>
+            <form action="post">
+                <select name="">
+                    <option value="User ban">Забанить пользователя</option>
+                    <option value="Delete this answer">Удалить ответ</option>
+                </select>
+                <p hidden>@element.id</p>
+                <input type="submit" value="Отправить">
+            </form>
+        </div>
+    }
 </div>

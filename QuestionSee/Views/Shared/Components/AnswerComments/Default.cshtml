@@ -1,5 +1,5 @@
 ﻿@{
-    QuestionSee.DB.Answer answer = Model.answer;
+    QuestionSee.DB.Answer[] answer = Model.answer;
     QuestionSee.DB.User user = Model.user;
 }
 
@@ -26,14 +26,26 @@
             </p>
             <p>@element.Date</p>
             <p>@element.Deleted</p>
-            <form action="post">
-                <select name="">
-                    <option value="User ban">Забанить пользователя</option>
-                    <option value="Delete this answer">Удалить ответ</option>
-                </select>
-                <p hidden>@element.id</p>
-                <input type="submit" value="Отправить">
-            </form>
+            <p>UserId @element.UserId</p>
+
+            @if (user.Admin == false)
+            {
+
+            }
+            else
+            {
+            <div class="MiniPanel">
+                <form method="post" action="/Home/AdminActions">
+                    <select name="SelectedItem">
+                        <option value="User ban">Забанить пользователя</option>
+                        <option value="Delete this answer">Удалить ответ</option>
+                    </select>
+                    <input hidden type="text" name="AnswerId" value="@element.id">
+                    <input hidden type="text" name="UserId" value="@element.UserId">
+                    <input type="submit" value="Отправить">
+                </form>
+             </div>
+            }
         </div>
     }
 </div>

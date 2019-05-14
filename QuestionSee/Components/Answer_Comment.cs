@@ -4,6 +4,7 @@ using System.Dynamic;
 using System.Linq;
 using System.Threading.Tasks;
 using Microsoft.AspNetCore.Mvc;
+using Microsoft.AspNetCore.Mvc.Filters;
 using QuestionSee.DB;
 namespace QuestionSee.Components
 {
@@ -11,7 +12,7 @@ namespace QuestionSee.Components
     {
         DBConnection db;
 
-        User CurrentUser;
+        User CurrentUser = new DB.User();
         Session ses;
 
         public AnswerCommentsViewComponent(DBConnection db, Session ses)
@@ -22,6 +23,11 @@ namespace QuestionSee.Components
 
         public async Task<IViewComponentResult> InvokeAsync()
         {
+            if (ses.users.Keys.Contains(HttpContext.Session.Id))
+            {
+                CurrentUser = ses.users[HttpContext.Session.Id].current;
+            }
+
             if (Request.Method != "POST")
             {
                 return View("empty");
@@ -32,9 +38,7 @@ namespace QuestionSee.Components
                 return View("empty");
             }
 
-            User u = new User();
-            CurrentUser = ses.users[HttpContext.Session.Id].current;
-            u = CurrentUser;
+            User u = CurrentUser;
 
             string id = Request.Form["AnswersComments"];
             int iid = int.Parse(id);

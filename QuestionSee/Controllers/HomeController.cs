@@ -56,6 +56,30 @@ namespace QuestionSee.Controllers
             return RedirectToAction("RegistrationPage");
         }
 
+        public IActionResult AdminActions(IFormCollection collection)
+        {
+            if (collection["SelectedItem"] == "User ban")
+            {
+                int id = int.Parse(collection["UserId"]);
+                User u = db.Users.Where(f => f.id == id).FirstOrDefault();
+                u.Banned = true;
+
+                db.SaveChanges();
+            }
+            if (collection["SelectedItem"] == "Удалить ответ")
+            {
+                int id = int.Parse(collection["AnswerId"]);
+                Answer ans = db.Answers.Where(f => f.id == id).FirstOrDefault();
+                ans.Deleted = true;
+
+                db.SaveChanges();
+            }
+
+
+            return View("/");
+        }
+
+
         public IActionResult SentQuestion(IFormCollection collection)
 
         {

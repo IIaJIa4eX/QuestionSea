@@ -66,7 +66,7 @@ namespace QuestionSee.Controllers
 
                 db.SaveChanges();
             }
-            if (collection["SelectedItem"] == "Удалить ответ")
+            if (collection["SelectedItem"] == "Delete this answer")
             {
                 int id = int.Parse(collection["AnswerId"]);
                 Answer ans = db.Answers.Where(f => f.id == id).FirstOrDefault();

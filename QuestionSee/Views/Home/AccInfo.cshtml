@@ -19,8 +19,8 @@
                     <input name="Id" value="@Model.id">
                 </div>
             </form>
-            
-            <label></label>
+            <p>Ваш рейтинг</p>
+            <label>@Model.Rating</label>
         </div>
         <div class="AccInfo">
             <form id="Editform" action="/Account/Edit" method="post" enctype="multipart/form-data">
@@ -57,16 +57,18 @@
                     </div>
                 </div>
                 <div hidden>
-                    <input name="Id"  value="@Model.id">
-                </div>                              
+                    <input name="Id" value="@Model.id">
+                </div>
                 <div style="text-align:center;">
                     <button type="button" class="btn btn-primary" onclick="errorcheck();">Редактировать</button>
                 </div>
             </form>
-            
+
         </div>
         <div style="clear:both;"></div>
-        <div class="StatAccView"></div>
+        <div class="StatAccView" id="piechart">
+
+        </div>
 
     </div>
 
@@ -76,5 +78,30 @@
         $.post("/Account/Edit", $("#Editform").serialize(), function (data) {
             $("#Editerrorview").html(data);
         });
+    }
+
+</script>
+<script type="text/javascript">
+    google.charts.load('current', { 'packages': ['corechart'] });
+    google.charts.setOnLoadCallback(drawChart);
+
+    function drawChart() {
+
+        var data = google.visualization.arrayToDataTable([
+            ['Task', 'Hours per Day'],
+            ['Work', 11],
+            ['Eat', 2],
+            ['Commute', 2],
+            ['Watch TV', 2],
+            ['Sleep', 7]
+        ]);
+
+        var options = {
+            title: 'Ваша статистика: отвеченных\заданных вопросов'
+        };
+
+        var chart = new google.visualization.PieChart(document.getElementById('piechart'));
+
+        chart.draw(data, options);
     }
 </script>

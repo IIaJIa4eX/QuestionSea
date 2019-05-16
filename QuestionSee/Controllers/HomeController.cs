@@ -90,6 +90,8 @@ namespace QuestionSee.Controllers
             if (CurrentUser != null)
             {
                 cur = CurrentUser.id;
+                User u = db.Users.Where(f => f.id == cur).FirstOrDefault();
+                u.Asked++;
                 qs.Header = collection["QuestionHeader"];
                 qs.Description = collection["content"];
                 qs.Tag = collection["QuestionTags"];
@@ -112,6 +114,10 @@ namespace QuestionSee.Controllers
             if(CurrentUser != null)
             {
                 cur = CurrentUser.id;
+
+                User u = db.Users.Where(f => f.id == cur).FirstOrDefault();
+                u.Rating = u.Rating +5;
+                u.Answered++;
 
                 Answer ans = new Answer();
 

@@ -137,6 +137,13 @@ body {
     height: auto;
 }
 
+.AnswerBlock.winer {
+    border:1px solid green;
+    border-radius:20px;
+    overflow:hidden;
+    padding:20px;
+}
+
 .Question {
     background-color: coral;
     height: 100%;

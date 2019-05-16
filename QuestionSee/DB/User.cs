@@ -19,6 +19,10 @@ namespace QuestionSee.DB
 
         public int Rating { get; set; }
 
+        public int Asked { get; set; }
+
+        public int Answered { get; set; }
+
         public string Email { get; set; }
 
         public bool Status { get; set; }

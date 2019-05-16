@@ -8,22 +8,17 @@
 
     @foreach (var element in Model.answer)
     {
-        <div class="AnswerBlock">
+        <div></div>
+
+        <div class="@(element.BestAnswer ? "AnswerBlock winer" : "AnswerBlock")">
+
             <hr style="border-color:black;" />
+
+
             <div>@Html.Raw(element.AnswerText)</div>
             <p>@element.Rating</p>
             <p>@element.Like</p>
             <p>@element.Dislike</p>
-            <p>
-                @if (element.BestAnswer)
-                {
-                    <span>Ура</span>
-                }
-                else
-                {
-                    <span>НЕ Ура</span>
-                }
-            </p>
             <p>@element.Date</p>
             <p>@element.Deleted</p>
             <p>UserId @element.UserId</p>
@@ -34,17 +29,17 @@
             }
             else
             {
-            <div class="MiniPanel">
-                <form method="post" action="/Home/AdminActions">
-                    <select name="SelectedItem">
-                        <option value="User ban">Забанить пользователя</option>
-                        <option value="Delete this answer">Удалить ответ</option>
-                    </select>
-                    <input hidden type="text" name="AnswerId" value="@element.id">
-                    <input hidden type="text" name="UserId" value="@element.UserId">
-                    <input type="submit" value="Отправить">
-                </form>
-             </div>
+                <div class="MiniPanel">
+                    <form method="post" action="/Home/AdminActions">
+                        <select name="SelectedItem">
+                            <option value="User ban">Забанить пользователя</option>
+                            <option value="Delete this answer">Удалить ответ</option>
+                        </select>
+                        <input hidden type="text" name="AnswerId" value="@element.id">
+                        <input hidden type="text" name="UserId" value="@element.UserId">
+                        <input type="submit" value="Отправить">
+                    </form>
+                </div>
             }
         </div>
     }

@@ -23,6 +23,8 @@ namespace QuestionSee.DB
 
         public int Answered { get; set; }
 
+        public int BestAnswersCount { get; set; }
+
         public string Email { get; set; }
 
         public bool Status { get; set; }

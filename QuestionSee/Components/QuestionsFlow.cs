@@ -44,6 +44,7 @@ namespace QuestionSee.Components
             if (!string.IsNullOrWhiteSpace(tags))
             {
                 var qtags = tags.Split(',');
+                //foreach(var d in qtags)
                 arr = arr.Where(f => qtags.Contains(f.Tag));
             }
 

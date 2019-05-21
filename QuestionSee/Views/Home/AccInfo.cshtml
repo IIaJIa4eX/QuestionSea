@@ -90,12 +90,13 @@
         var data = google.visualization.arrayToDataTable([
             ['Task', 'Hours per Day'],
             ['Задал', @Model.Asked,],
-            ['Ответил', @Model.Answered]
+            ['Ответил', @Model.Answered],
+           ['Лучших Ответов', @Model.BestAnswersCount]
         ]);
 
         var options = {
             title: 'Ваша статистика: отвеченных\заданных вопросов',
-            colors: ['red', '#878e1c']
+           // colors: ['red', '#878e1c']
         };
 
         var chart = new google.visualization.PieChart(document.getElementById('piechart'));

@@ -1,6 +1,7 @@
 ﻿@{
     QuestionSee.DB.Answer[] answer = Model.answer;
     QuestionSee.DB.User user = Model.user;
+    bool isthebest = Model.currentU;
 }
 
 
@@ -9,11 +10,9 @@
     @foreach (var element in Model.answer)
     {
         <div></div>
+        <hr style="border-color:black;" />
 
         <div class="@(element.BestAnswer ? "AnswerBlock winer" : "AnswerBlock")">
-
-            <hr style="border-color:black;" />
-
 
             <div>@Html.Raw(element.AnswerText)</div>
             <p>@element.Rating</p>
@@ -23,6 +22,20 @@
             <p>@element.Deleted</p>
             <p>UserId @element.UserId</p>
 
+            @if (isthebest == false)
+            {
+
+            }
+            else
+            {
+                <div class="BestAnswerisTrue">
+                    <form method="post" action="/Home/BestAnswer">
+                        <input hidden type="text" name="BestAnswerId" value="@element.id">
+                        <input type="submit" value="Лучший ответ">
+                    </form>
+                </div>
+            }
+          
             @if (user.Admin == false)
             {
 

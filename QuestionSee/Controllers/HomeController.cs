@@ -136,6 +136,34 @@ namespace QuestionSee.Controllers
             return RedirectToAction("RegistrationPage");
         }
 
+        public IActionResult BestAnswer(IFormCollection collection)
+        {
+            int iid = int.Parse(collection["BestAnswerId"]);
+
+            Answer ans = db.Answers.Where(f => f.id == iid).FirstOrDefault();
+
+            ans.BestAnswer = true;
+
+
+            int Questid = ans.QuestionId;
+
+            Question qus = db.Questions.Where(f => f.Id == Questid).FirstOrDefault();
+
+            qus.Answered = true;
+
+            int Usrid = ans.UserId;
+
+            User usr = db.Users.Where(f => f.id == Usrid).FirstOrDefault();
+
+            usr.BestAnswersCount++;
+
+            usr.Rating = usr.Rating + 25;
+
+            db.SaveChanges();
+
+            return RedirectToAction("Index");
+        }
+
 
 
         public IActionResult AccInfo()

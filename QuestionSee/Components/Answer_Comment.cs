@@ -44,9 +44,14 @@ namespace QuestionSee.Components
             int iid = int.Parse(id);
             var arr = db.Answers.Where(f => f.QuestionId == iid).ToArray();
 
+            var quest = db.Questions.Where(f => f.Id == iid).FirstOrDefault();
+
+            
+
             dynamic d = new ExpandoObject();
             d.user = u;
             d.answer = arr;
+            d.currentU = (quest.UserId == CurrentUser.id) ? true : false;
 
             return View(d);
         }

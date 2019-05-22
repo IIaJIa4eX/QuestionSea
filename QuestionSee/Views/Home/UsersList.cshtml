@@ -1,0 +1,22 @@
+﻿@model IEnumerable<QuestionSee.DB.User>
+@{
+    ViewData["Title"] = "UsersList";
+    Layout = "~/Views/Shared/_Layout.cshtml";
+}
+
+
+<body>
+    <div class="AllQuestions">
+        <div class="QuestionSearch">
+            <form method="post">
+                <input type="text" name="SearchByNickname" /> Поиск по Нику
+                <input type="text" name="SearchByEmail" /> Поиск по Почте
+                <input type="submit" value="Найти" />
+            </form>
+        </div>
+
+        @await Component.InvokeAsync("UsersList")
+
+    </div>
+
+</body>

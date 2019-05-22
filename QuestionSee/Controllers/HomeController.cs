@@ -66,6 +66,7 @@ namespace QuestionSee.Controllers
 
                 db.SaveChanges();
             }
+
             if (collection["SelectedItem"] == "Delete this answer")
             {
                 int id = int.Parse(collection["AnswerId"]);
@@ -178,7 +179,11 @@ namespace QuestionSee.Controllers
             return RedirectToAction("RegistrationPage");
         }
 
+        public IActionResult UsersList()
+        {
 
+            return View();
+        }
 
 
         public IActionResult RegistrationPage()

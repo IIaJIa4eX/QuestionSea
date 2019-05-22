@@ -1,0 +1,42 @@
+﻿    @{
+        QuestionSee.DB.User[] users = Model.users;
+        QuestionSee.DB.User currentuser = Model.currentuser;
+    }
+
+    <head>
+        <meta name="viewport" content="width=device-width" />
+        <title>UsersList</title>
+    </head>
+    <body>
+            <div class="Allusers">
+        <table class="table table-bordered">
+            <thead>
+                <tr>
+                    <th scope="col">#</th>
+                    <th scope="col">Nickname</th>
+                    <th scope="col">Email</th>
+                    <th scope="col">Имя</th>
+                    <th scope="col">Рейтинг</th>
+                    <th scope="col">Фамилия</th>
+                </tr>
+            </thead>
+            <tbody>
+                @foreach (var element in Model.users)
+
+                {
+                <tr>
+                    <th scope="row">1</th>
+                    <td>@element.Nickname</td>
+                    <td>@element.Email</td>
+                    <td>@element.Name</td>
+                    <td>@element.Rating</td>
+                    <td>@element.SecondName</td>
+                </tr>
+                }
+
+
+            </tbody>
+        </table>
+            </div>
+    </body>
+

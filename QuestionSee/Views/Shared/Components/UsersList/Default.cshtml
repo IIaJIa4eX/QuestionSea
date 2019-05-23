@@ -26,11 +26,25 @@
                 {
                 <tr>
                     <th scope="row">1</th>
-                    <td>@element.Nickname</td>
+                    <td><a href="/Home/AccInfo">@element.Nickname</a></td>
                     <td>@element.Email</td>
                     <td>@element.Name</td>
                     <td>@element.Rating</td>
                     <td>@element.SecondName</td>
+                    @if (currentuser.Admin == false)
+                    {
+
+                    }
+                    else
+                    {
+                        <td>
+                            <form method="post" action="/Home/AdminActions">
+                    <input hidden type="text" name="UserId" value="@element.id">
+                    <input type="submit" value="Забанить">
+                              </form>
+                        </td>
+                    }
+
                 </tr>
                 }
 

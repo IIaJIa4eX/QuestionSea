@@ -56,9 +56,20 @@ namespace QuestionSee.Controllers
             return RedirectToAction("RegistrationPage");
         }
 
+      
         public IActionResult AdminActions(IFormCollection collection)
         {
-            if (collection["SelectedItem"] == "User ban")
+            //var r = Request.Headers.Where(f => f.Key == "HeaderReferer").FirstOrDefault();
+            string referer = "";
+            foreach (var item in Request.Headers)
+            {
+                if (item.Key == "Referer")
+                {
+                    referer = item.Value;
+                }
+            }
+
+            if (collection["SelectedItem"] == "User ban" || collection["UserId"] != "")
             {
                 int id = int.Parse(collection["UserId"]);
                 User u = db.Users.Where(f => f.id == id).FirstOrDefault();
@@ -77,7 +88,7 @@ namespace QuestionSee.Controllers
             }
 
 
-            return View("/");
+            return Redirect(referer);
         }
 
 

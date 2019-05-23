@@ -5,6 +5,7 @@ using System.Threading.Tasks;
 using Microsoft.AspNetCore.Hosting;
 using Microsoft.AspNetCore.Http;
 using Microsoft.AspNetCore.Mvc;
+using QuestionSee.Crypto;
 using QuestionSee.DB;
 
 namespace QuestionSee.Controllers
@@ -75,6 +76,9 @@ namespace QuestionSee.Controllers
 
             string email = Request.Form["EmailCheckLogIn"];
             string password = Request.Form["PasswordCheckLogIn"];
+
+           // password = Md5.Convert(Md5.Convert(password + "SALT_Dp5BZ9raMdFwAHw_SALT")) + Md5.Convert(password + "SALT_Dp5BZ9raMdFwAHw_SALT");
+
             var em = db.Users.Where(f => f.Email == email).FirstOrDefault();
 
             if (em == null)

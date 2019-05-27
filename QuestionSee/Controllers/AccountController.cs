@@ -67,6 +67,7 @@ namespace QuestionSee.Controllers
         }
 
 
+
         public ActionResult CheckInfo()
         {
             if (Request.Method != "POST")
@@ -104,7 +105,7 @@ namespace QuestionSee.Controllers
         public ActionResult Create(IFormCollection collection)
         {
                 User u = new User();
-                //u.Name = Request.Form["Name"]; старый метод
+
                 u.Name = collection["Name"];
                 u.Nickname = collection["Nickname"];
                 u.Password = collection["Password"]; 

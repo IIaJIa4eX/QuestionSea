@@ -190,6 +190,23 @@ namespace QuestionSee.Controllers
             return RedirectToAction("RegistrationPage");
         }
 
+
+        public IActionResult CheckRandomUserInfo(int id)
+        {
+            int userid = id;
+
+            if (CurrentUser != null)
+            {
+                User u = db.Users.Where(f => f.id == userid).FirstOrDefault();
+
+                return View(u);
+
+            }
+
+            return RedirectToAction("RegistrationPage");
+
+        }
+
         public IActionResult UsersList()
         {
 

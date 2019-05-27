@@ -15,9 +15,6 @@
                     <th scope="col">#</th>
                     <th scope="col">Nickname</th>
                     <th scope="col">Email</th>
-                    <th scope="col">Имя</th>
-                    <th scope="col">Рейтинг</th>
-                    <th scope="col">Фамилия</th>
                 </tr>
             </thead>
             <tbody>
@@ -26,11 +23,8 @@
                 {
                 <tr>
                     <th scope="row">1</th>
-                    <td><a href="/Home/AccInfo">@element.Nickname</a></td>
+                    <td><a href="/Home/CheckRandomUserInfo/@element.id">@element.Nickname</a></td>
                     <td>@element.Email</td>
-                    <td>@element.Name</td>
-                    <td>@element.Rating</td>
-                    <td>@element.SecondName</td>
                     @if (currentuser.Admin == false)
                     {
 

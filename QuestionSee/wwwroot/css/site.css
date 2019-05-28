@@ -96,6 +96,18 @@ body {
     height:489px;
 }
 
+.QuestionReputation {
+    border: 1px solid black;
+    width:inherit;
+    height:20px;
+}
+.LikeDislike {
+    width: inherit;
+    height: 20px;
+    margin: 10px;
+}
+
+
 .AnswerComment {
     margin: 0 auto 0;
     background-color: antiquewhite;

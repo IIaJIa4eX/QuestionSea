@@ -1,4 +1,4 @@
-﻿@{ 
+﻿@{
     QuestionSee.DB.Question question = Model.question;
     QuestionSee.DB.User user = Model.user;
 }
@@ -11,9 +11,11 @@
         </div>
         <div class="FullquestionCard">
             <h2>@question.Header</h2>
-            <div>@Html.Raw(question.Description)</div>
             <p>@question.Tag</p>
-            <p>@question.Rating</p>
+            <div style="border:1px solid black;">
+                @Html.Raw(question.Description)
+            </div>
+
             <p>
                 @if (question.Answered)
                 {
@@ -24,25 +26,43 @@
                     <span>НЕ Ура</span>
                 }
             </p>
-            <p>@question.Like</p>
-            <p>@question.Dislike</p>
-            <p>@question.Date</p>
-            <p>@question.Deleted</p>
+            <div class="QuestionReputation">
+
+                <div style="float:left; width:129px">
+                    @question.Date
+                </div>
+                <div style="margin:0px auto; width:20px;">@question.Rating</div>
+                <p hidden>@question.Deleted</p>
+            </div>
+            <div class="LikeDislike">
+
+                <form>
+                    <input hidden type="text" name="QuestionId" value="@question.Id">
+                    <div style="float:left;">
+                        <button type="button"  class="btn btn-success btn-sm">+</button><p>@question.Like</p>
+                    </div>
+                    <div style="float:right;">
+                        <p>@question.Dislike</p><button type="button"  class="btn btn-danger  btn-sm">-</button>
+                    </div>
+</form>
+
+            </div>
+
 
             <div></div>
 
             @await Component.InvokeAsync("AnswerComments")
         </div>
-    </div>
-    <div class="AnswerComment">
-        <form method="post" action="/Home/GiveAnswer">
+</div>
+<div class="AnswerComment">
+    <form method="post" action="/Home/GiveAnswer">
 
-            <textarea name="content" id="editor"></textarea>
-            <input hidden name="QuestionId" type="text" value="@question.Id">
-            <input type="submit" value="Ответить">
-        </form>
+        <textarea name="content" id="editor"></textarea>
+        <input hidden name="QuestionId" type="text" value="@question.Id">
+        <input type="submit" value="Ответить">
+    </form>
 
-    </div>
+</div>
 
 
 </div>
@@ -50,4 +70,6 @@
     function Clear() {
         jQuery('#regform input').not('input[type="submit"]').val("");
     }
+
 </script>
+

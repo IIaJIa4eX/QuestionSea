@@ -11,7 +11,7 @@
         </div>
         <div class="FullquestionCard">
             <h2>@question.Header</h2>
-            <p>@question.Tag</p>
+            Теги:<p>@question.Tag</p>
             <div style="border:1px solid black;">
                 @Html.Raw(question.Description)
             </div>
@@ -31,21 +31,24 @@
                 <div style="float:left; width:129px">
                     @question.Date
                 </div>
-                <div style="margin:0px auto; width:20px;">@question.Rating</div>
+                <div style="float:right">@question.Rating</div>
                 <p hidden>@question.Deleted</p>
             </div>
             <div class="LikeDislike">
 
-                <form>
-                    <input hidden type="text" name="QuestionId" value="@question.Id">
-                    <div style="float:left;">
-                        <button type="button"  class="btn btn-success btn-sm">+</button><p>@question.Like</p>
+                    <div style="float:right; width: 45px;">
+                        <form method="post" action="/Home/LikeDislike">
+                            <input hidden type="text" name="Dislike" value="@question.Id">
+                            <button style="float:right;" type="submit" class="btn btn-danger  btn-sm">-</button> <p style="float:right; color:#ff0000">@question.Dislike</p>
+                        </form>
                     </div>
-                    <div style="float:right;">
-                        <p>@question.Dislike</p><button type="button"  class="btn btn-danger  btn-sm">-</button>
-                    </div>
-</form>
 
+                    <div style="float:right; width: 45px;">
+                        <form method="post" action="/Home/LikeDislike">
+                            <input hidden type="text" name="Like" value="@question.Id">
+                            <p style="float:right; color:#00ff00;">@question.Like</p><button type="submit" style="float:right;" class="btn btn-success btn-sm">+</button>
+                        </form>
+                    </div>
             </div>
 
 

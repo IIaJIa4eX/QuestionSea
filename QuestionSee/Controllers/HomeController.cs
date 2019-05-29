@@ -190,6 +190,31 @@ namespace QuestionSee.Controllers
             return RedirectToAction("RegistrationPage");
         }
 
+        public IActionResult LikeDislike(IFormCollection collection) {
+ 
+
+            if (collection.ContainsKey("Like"))
+            {
+                int QuestionIdLike = int.Parse(collection["Like"]);
+                Question qst = db.Questions.Where(f => f.Id == QuestionIdLike).FirstOrDefault();
+                qst.Like++;
+                qst.Rating = qst.Rating + 10;
+
+                db.SaveChanges();
+            }
+            else
+            {
+                int QuestionIdDislike = int.Parse(collection["Dislike"]);
+                Question qst = db.Questions.Where(f => f.Id == QuestionIdDislike).FirstOrDefault();
+                qst.Dislike++;
+                qst.Rating = qst.Rating - 10;
+
+                db.SaveChanges();
+            }
+
+
+            return RedirectToAction("Index");
+        }
 
         public IActionResult CheckRandomUserInfo(int id)
         {

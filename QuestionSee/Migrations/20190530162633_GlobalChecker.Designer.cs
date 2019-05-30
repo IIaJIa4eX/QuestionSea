@@ -2,15 +2,17 @@
 using System;
 using Microsoft.EntityFrameworkCore;
 using Microsoft.EntityFrameworkCore.Infrastructure;
+using Microsoft.EntityFrameworkCore.Migrations;
 using Microsoft.EntityFrameworkCore.Storage.ValueConversion;
 using QuestionSee.DB;
 
 namespace QuestionSee.Migrations
 {
     [DbContext(typeof(DBConnection))]
-    partial class DBConnectionModelSnapshot : ModelSnapshot
+    [Migration("20190530162633_GlobalChecker")]
+    partial class GlobalChecker
     {
-        protected override void BuildModel(ModelBuilder modelBuilder)
+        protected override void BuildTargetModel(ModelBuilder modelBuilder)
         {
 #pragma warning disable 612, 618
             modelBuilder
@@ -45,26 +47,6 @@ namespace QuestionSee.Migrations
                     b.HasKey("id");
 
                     b.ToTable("Answers");
-                });
-
-            modelBuilder.Entity("QuestionSee.DB.GlobalChecker", b =>
-                {
-                    b.Property<int>("id")
-                        .ValueGeneratedOnAdd();
-
-                    b.Property<int>("AnswerId");
-
-                    b.Property<bool>("IsDisliked");
-
-                    b.Property<bool>("IsLiked");
-
-                    b.Property<int>("QuestionId");
-
-                    b.Property<int>("UserId");
-
-                    b.HasKey("id");
-
-                    b.ToTable("Globals");
                 });
 
             modelBuilder.Entity("QuestionSee.DB.Question", b =>

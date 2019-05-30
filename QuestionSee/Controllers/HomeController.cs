@@ -111,6 +111,10 @@ namespace QuestionSee.Controllers
                 qs.UserId = cur;
 
                 db.Questions.Add(qs);
+
+                GlobalChecker gc = new GlobalChecker();
+                gc.QuestionId =
+
                 db.SaveChanges();
 
                 return RedirectToAction("AskQuestion");

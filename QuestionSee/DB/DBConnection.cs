@@ -15,7 +15,9 @@ namespace QuestionSee.DB
 
         public DbSet<Answer> Answers { get; set; }
 
+        public DbSet<GlobalChecker> Globals { get; set; }
 
+        
 
         protected override void OnConfiguring(DbContextOptionsBuilder optionsBuilder)
         {

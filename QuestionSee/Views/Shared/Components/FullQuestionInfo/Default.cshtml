@@ -36,19 +36,21 @@
             </div>
             <div class="LikeDislike">
 
-                    <div style="float:right; width: 45px;">
-                        <form method="post" action="/Home/LikeDislike">
-                            <input hidden type="text" name="Dislike" value="@question.Id">
-                            <button style="float:right;" type="submit" class="btn btn-danger  btn-sm">-</button> <p style="float:right; color:#ff0000">@question.Dislike</p>
-                        </form>
-                    </div>
-
-                    <div style="float:right; width: 45px;">
-                        <form method="post" action="/Home/LikeDislike">
-                            <input hidden type="text" name="Like" value="@question.Id">
-                            <p style="float:right; color:#00ff00;">@question.Like</p><button type="submit" style="float:right;" class="btn btn-success btn-sm">+</button>
-                        </form>
-                    </div>
+                <!--<div style="float:right; width: 45px;">
+        <form method="post" action="/Home/LikeDislike">
+            <input hidden type="text" name="Dislike" value="@question.Id">
+            <input hidden type="text" name="UserDislike" value="@user.id">
+            <button style="float:right;" type="submit" class="btn btn-danger  btn-sm">-</button> <p style="float:right; color:#ff0000">@question.Dislike</p>
+        </form>
+    </div>
+        -->
+                <div style="margin: 0px auto; width: 45px;">
+                    <form method="post" action="/Home/LikeDislike">
+                        <input hidden type="text" name="Like" value="@question.Id">
+                        <input hidden type="text" name="UserLike" value="@user.id">
+                        <p style="float:right; color:#00ff00;">@question.Like</p><button type="submit" style="float:right;" class="btn btn-success btn-sm">+</button>
+                    </form>
+                </div>
             </div>
 
 

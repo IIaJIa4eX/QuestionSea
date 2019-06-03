@@ -44,6 +44,7 @@ namespace QuestionSee.Controllers
             return View();
 
         }
+
         public IActionResult AskQuestion()
         {
             if (CurrentUser != null)
@@ -195,28 +196,44 @@ namespace QuestionSee.Controllers
         }
 
         public IActionResult LikeDislike(IFormCollection collection) {
- 
 
-            if (collection.ContainsKey("Like"))
+            
+            int QuestionIdLike = int.Parse(collection["Like"]);
+            GlobalChecker gb = db.Globals.Where(f => f.QuestionId == QuestionIdLike).FirstOrDefault();
+
+            if(gb != null && gb.IsLiked == true)
             {
-                int QuestionIdLike = int.Parse(collection["Like"]);
+                Question qst = db.Questions.Where(f => f.Id == QuestionIdLike).FirstOrDefault();
+                qst.Like--;
+                qst.Rating = qst.Rating - 10;
+                return RedirectToAction("Index");
+            }
+            
+            if(gb.IsLiked == false && gb != null)
+            {
+                int usid = int.Parse(collection["UserLike"]);
+                gb.QuestionId = QuestionIdLike;
+                gb.UserId = usid;
+                gb.IsLiked = true;
+
                 Question qst = db.Questions.Where(f => f.Id == QuestionIdLike).FirstOrDefault();
                 qst.Like++;
                 qst.Rating = qst.Rating + 10;
 
+                db.Globals.Add(gb);
                 db.SaveChanges();
+
+                return RedirectToAction("Index");
             }
-            else
-            {
-                int QuestionIdDislike = int.Parse(collection["Dislike"]);
-                Question qst = db.Questions.Where(f => f.Id == QuestionIdDislike).FirstOrDefault();
-                qst.Dislike++;
-                qst.Rating = qst.Rating - 10;
+            //else
+            //{
+            //    int QuestionIdDislike = int.Parse(collection["Dislike"]);
+            //    Question qst = db.Questions.Where(f => f.Id == QuestionIdDislike).FirstOrDefault();
+            //    qst.Dislike++;
+            //    qst.Rating = qst.Rating - 10;
 
-                db.SaveChanges();
-            }
-
-
+            //    db.SaveChanges();
+            //}
             return RedirectToAction("Index");
         }
 

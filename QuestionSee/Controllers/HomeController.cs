@@ -112,10 +112,13 @@ namespace QuestionSee.Controllers
                 qs.UserId = cur;
 
                 db.Questions.Add(qs);
+                db.SaveChanges();
 
                 GlobalChecker gc = new GlobalChecker();
-                gc.QuestionId =
+                gc.QuestionId = qs.Id;
+                gc.UserId = cur;
 
+                db.Globals.Add(gc);
                 db.SaveChanges();
 
                 return RedirectToAction("AskQuestion");
@@ -195,36 +198,70 @@ namespace QuestionSee.Controllers
             return RedirectToAction("RegistrationPage");
         }
 
-        public IActionResult LikeDislike(IFormCollection collection) {
+        public IActionResult LikeDislike(IFormCollection collection)
+        {
 
-            
-            int QuestionIdLike = int.Parse(collection["Like"]);
-            GlobalChecker gb = db.Globals.Where(f => f.QuestionId == QuestionIdLike).FirstOrDefault();
-
-            if(gb != null && gb.IsLiked == true)
+            if (CurrentUser == null)
             {
-                Question qst = db.Questions.Where(f => f.Id == QuestionIdLike).FirstOrDefault();
-                qst.Like--;
-                qst.Rating = qst.Rating - 10;
-                return RedirectToAction("Index");
+                return RedirectToAction("RegistrationPage");
             }
-            
-            if(gb.IsLiked == false && gb != null)
+
+            int usid = int.Parse(collection["UserLike"]);
+            int QuestionIdLike = int.Parse(collection["Like"]);
+
+            GlobalChecker gb = db.Globals.Where(f => f.QuestionId == QuestionIdLike && f.UserId == usid).FirstOrDefault();
+
+            if (gb == null)
             {
-                int usid = int.Parse(collection["UserLike"]);
                 gb.QuestionId = QuestionIdLike;
+
                 gb.UserId = usid;
+
                 gb.IsLiked = true;
 
+
+
                 Question qst = db.Questions.Where(f => f.Id == QuestionIdLike).FirstOrDefault();
+
                 qst.Like++;
+
                 qst.Rating = qst.Rating + 10;
 
+
+
                 db.Globals.Add(gb);
+
                 db.SaveChanges();
 
-                return RedirectToAction("Index");
             }
+
+
+            if (gb != null)
+
+            {
+                Question qst = db.Questions.Where(f => f.Id == QuestionIdLike).FirstOrDefault();
+                if (gb.IsLiked == true)
+                {
+
+                    qst.Like--;
+
+                    qst.Rating = qst.Rating - 10;
+                    gb.IsLiked = false;
+                }
+                else
+                {
+                    qst.Like++;
+                    gb.IsLiked = true;
+                    qst.Rating = qst.Rating + 10;
+                }
+
+                db.SaveChanges();
+                return RedirectToAction("Index");
+
+            }
+
+
+
             //else
             //{
             //    int QuestionIdDislike = int.Parse(collection["Dislike"]);
